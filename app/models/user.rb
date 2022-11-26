@@ -13,5 +13,4 @@ class User < ApplicationRecord
   validates :email, format: {with: VALID_EMAIL_REGEX}, allow_blank: true
   validates :email, presence: true
   validates :name, presence: true
-  validates :password, presence: true, length: { minimum: 6 }
 end

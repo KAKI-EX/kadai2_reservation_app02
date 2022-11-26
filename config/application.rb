@@ -15,5 +15,9 @@ module ReservationApp02
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.i18n.default_locale = :ja #11/21 1305 日本語化のため記述を追記
+    config.time_zone = 'Asia/Tokyo' #11/21 1315 created.atカラムを取り出した時に日本時間に変換するために記述
+
   end
 end
