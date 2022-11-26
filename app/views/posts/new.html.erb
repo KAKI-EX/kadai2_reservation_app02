@@ -1,0 +1,56 @@
+
+<h3>テスト</h3>
+
+ <%= render "shared/error", obj: @post %>
+
+<%= form_with model:@post,local: true do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :room_name,"お部屋の名前" %></th>
+      <td><%= f.text_field :room_name %></td>
+    </tr>
+  </table>
+    <tr>
+      <th><%= f.label :room_price, "お部屋の価格"%></th>
+      <td><%= f.text_field :room_price %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_info, "お部屋の詳細"%></th>
+      <td><%= f.text_area :room_info %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_address_postcode, "郵便番号"%></th>
+      <td><%= f.text_field :room_address_postcode %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_address_prefecture, "都道府県"%></th>
+      <td><%= f.text_field :room_address_prefecture %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_address_town_village, "市区町村"%></th>
+      <td><%= f.text_field :room_address_town_village %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_address_other, "その他住所"%></th>
+      <td><%= f.text_field :room_address_other %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_photo,"お部屋の写真" %></th>
+      <td><%= f.file_field :room_photo %></td>
+    </tr>
+  </table>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <ul>
+    <li><%= f.submit "登録完了する"%></li>
+    <li><%= link_to "トップページに戻る", :home_index %></li>
+  </ul>
+
+<% end %>

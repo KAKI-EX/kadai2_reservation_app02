@@ -1,0 +1,39 @@
+<h1>部屋の貸し出し</h1>
+
+<div><%= link_to "お部屋の貸し出し登録", new_post_path, class: "text-white" %></div>
+
+
+<p><%= flash[:notice] %>
+
+<h3>投稿一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>更新日時</th>
+      <th>投稿日時</th>
+      <th>部屋の名前</th>
+      <th>貸し出し価格</th>
+      <th>住所</th>
+      <th>詳細を見る</th>
+      <th>編集する</th>
+      <th>登録削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @posts_current_user.each do |post| %>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.updated_at.strftime('%Y年%-m月%-d日') %></td>
+      <td><%= post.created_at.strftime('%Y年%-m月%-d日') %></td>
+      <td><%= post.room_name %></td>
+      <td><%= post.room_price %></td>
+      <td><%= post.room_address_prefecture %></td>
+      <td><%= link_to "詳細", post_path(post) %></td>
+      <td><%= link_to "編集", edit_post_path(post)%></td>
+      <td><%= link_to "削除", post_path(post),data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }  %></td>
+    </tr>
+<% end %>
+</tbody>
+</table>

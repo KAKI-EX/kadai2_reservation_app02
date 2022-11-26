@@ -1,0 +1,37 @@
+<h3>お部屋の詳細</h3>
+
+<div><%= link_to "お部屋貸し出し画面TOPへ", posts_path, class: "text-white" %></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>登録画像</th>
+      <th>更新日時</th>
+      <th>投稿日時</th>
+      <th>部屋の名前</th>
+      <th>貸し出し価格</th>
+      <th>住所</th>
+      <th>詳細を見る</th>
+      <th>編集する</th>
+      <th>登録削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= image_tag @post.room_photo.url %></td>
+      <td><%= @post.updated_at.strftime('%Y年%-m月%-d日') %></td>
+      <td><%= @post.created_at.strftime('%Y年%-m月%-d日') %></td>
+      <td><%= @post.room_name %></td>
+      <td><%= @post.room_price %></td>
+      <td><%= @post.room_address_postcode %></td>
+      <td><%= @post.room_address_prefecture %></td>
+      <td><%= @post.room_address_town_village %></td>
+      <td><%= @post.room_address_other %></td>
+      <td><%= @post.room_info %></td>
+    </tr>
+
+
+
+</tbody>
+</table>
