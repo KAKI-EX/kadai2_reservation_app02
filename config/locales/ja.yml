@@ -1,0 +1,17 @@
+ ja:
+   activerecord:
+     models:
+       user: ユーザー
+     attributes:
+       user:
+         name: 名前
+         email: メールアドレス
+         age: 年齢
+         introduction: 一言紹介
+       post:
+        room_name: お部屋の名前
+        room_price: お部屋の価格
+        room_address_postcode: 郵便番号
+        room_address_prefecture: 都道府県
+        room_address_town_village: 市区町村
+        room_photo: お部屋の写真
