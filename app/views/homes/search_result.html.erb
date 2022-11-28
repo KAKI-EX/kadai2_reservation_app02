@@ -1,0 +1,9 @@
+
+<% if @posts_search.present?%>
+  <% @posts_search.each do |post| %>
+    <%= post.id %>
+    <%= post.room_name %>
+    <% end %>
+  <% else %>
+    <p>該当する部屋はありませんでした。</p>
+  <% end %>

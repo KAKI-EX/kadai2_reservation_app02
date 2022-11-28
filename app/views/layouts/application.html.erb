@@ -24,6 +24,15 @@
   <% end %>
 
   <body>
+  <!--ransack用の記述-->
+<%= search_form_for @q, url: search_result_homes_path do |f| %>
+  <%= f.search_field :room_address_prefecture_cont %>
+  <%= f.submit "検索" %>
+<% end %>
+
+
+<!--ここまで-->
+
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>

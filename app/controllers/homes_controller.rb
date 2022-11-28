@@ -1,4 +1,6 @@
-class HomeController < ApplicationController
+class HomesController < ApplicationController
+
+  before_action :search
 
   def index
     @posts = Post.all
@@ -8,6 +10,9 @@ class HomeController < ApplicationController
     if user_signed_in?
       logger.debug current_user.id
     end
+
+
+
   end
 
   def new
@@ -27,7 +32,11 @@ class HomeController < ApplicationController
   def user_reservation_list  #割り当て:ユーザー予約一覧
   end
 
-  def show #割り当て:部屋の一覧ページ
+  def search_result  #割り当て:部屋の検索結果一覧
+    @posts_search = @q.result
+  end
+
+  def show
   end
 
   def edit  #割り当て:ユーザー予約変更
@@ -38,6 +47,11 @@ class HomeController < ApplicationController
 
 
   def destroy
+  end
+
+  def search
+    @q = Post.ransack(params[:q])
+
   end
 
 
