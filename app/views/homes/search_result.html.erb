@@ -1,11 +1,10 @@
 
 
-<% if @posts_search.present?%>
-  <% @posts_search.each do |post| %>
-    <%= post.id %>
-    <%= post.room_name %>
+<% if @posts_for_kaminari.present?%>
+  <% @posts_for_kaminari.each do |post| %>
+<%= link_to image_tag(post.room_photo.to_s, class:"search_result"), "/posts/#{post.id}", size: '100*100' %>
     <% end %>
   <% else %>
     <p>該当する部屋はありませんでした。</p>
   <% end %>
-  <%= paginate @posts %>
+  <%= paginate @posts_for_kaminari %>

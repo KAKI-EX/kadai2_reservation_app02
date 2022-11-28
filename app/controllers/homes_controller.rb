@@ -34,7 +34,7 @@ class HomesController < ApplicationController
 
   def search_result  #割り当て:部屋の検索結果一覧
     @posts_search = @q.result
-    @posts = Post.page(params[:page]).per(5)
+    @posts_for_kaminari = @posts_search.page(params[:page]).per(10)
   end
 
   def show
