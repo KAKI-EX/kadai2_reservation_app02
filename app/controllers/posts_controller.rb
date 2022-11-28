@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user! #ログインユーザーのみ実行可能
 
   def index
-
     @posts_current_user = current_user.posts
   end
 
