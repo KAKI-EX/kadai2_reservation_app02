@@ -18,6 +18,7 @@ module ReservationApp02
 
     config.i18n.default_locale = :ja #11/21 1305 日本語化のため記述を追記
     config.time_zone = 'Asia/Tokyo' #11/21 1315 created.atカラムを取り出した時に日本時間に変換するために記述
+    Faker::Config.locale = :ja
 
   end
 end

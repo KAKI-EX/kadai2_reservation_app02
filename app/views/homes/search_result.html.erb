@@ -1,4 +1,5 @@
 
+
 <% if @posts_search.present?%>
   <% @posts_search.each do |post| %>
     <%= post.id %>
@@ -7,3 +8,4 @@
   <% else %>
     <p>該当する部屋はありませんでした。</p>
   <% end %>
+  <%= paginate @posts %>

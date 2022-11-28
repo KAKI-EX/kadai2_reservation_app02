@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :configure_permitted_image_parameters, if: :devise_controller?
+  before_action :set_search
 
   protected
 
@@ -17,4 +18,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_image_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
   end
+
+  def set_search
+    @q = Post.ransack(params[:q])
+    @posts_search = @q.result
+  end
+
 end

@@ -60,3 +60,7 @@ gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
 
 gem 'ransack'
+gem 'kaminari'
+gem 'faker'
+gem 'gimei'
+gem 'hirb'
