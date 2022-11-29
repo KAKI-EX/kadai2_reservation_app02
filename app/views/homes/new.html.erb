@@ -4,3 +4,32 @@
   <%= @post.room_name %>
   <%= @post.room_address_prefecture + @post.room_address_town_village  %>
 </div>
+
+<%= form_with model:@reservation,url: confirmation_homes_path(@reservation), local: true do |f| %>
+  <table>
+    <tr>
+      <p><%= @post.room_price %>
+      <th><%= f.label :check_in,"チェックイン日" %></th>
+      <td><%= f.date_field :check_in %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :check_out, "チェックアウト日"%></th>
+      <td><%= f.date_field :check_out %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :peaple_count, "ご宿泊人数"%></th>
+      <td><%= f.number_field :peaple_count, in: 1..10 %></td>
+    </tr>
+  </table>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.hidden_field :room_fee, value: @post.room_price %>
+
+  <ul>
+    <li><%= f.submit "予約を確認する"%></li>
+    <li><%= link_to "トップページに戻る", homes_path %></li>
+  </ul>
+
+<% end %>

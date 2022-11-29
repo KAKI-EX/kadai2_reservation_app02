@@ -12,10 +12,41 @@ class HomesController < ApplicationController
     end
   end
 
+  def back  #予約確認画面で戻るを押した場合
+    @reservation = Reservation.new(params.require(:reservation).permit(
+    :user_id,
+    :post_id,
+    :check_in,
+    :check_out,
+    :stay_count,
+    :peaple_count,
+    :room_fee,
+    :total_fee
+  ))
+  render new_homes_path(@reservation.post_id)
+  end
+
   def new  #部屋の予約ページ
     @post = Post.find(params[:id])
     @reservation = Reservation.new
     @user = User.find(@post.user_id)
+  end
+
+  def confirmation  #割り当て:予約確認画面
+    @reservation = Reservation.new(params.require(:reservation).permit(:user_id,:post_id,
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :room_fee,
+      :total_fee
+    ))
+    @total_fee = @reservation.room_fee * @reservation.peaple_count
+    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+
+    if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
+      render new_homes_path
+    end
   end
 
   def create
@@ -34,9 +65,6 @@ class HomesController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def confirmation  #割り当て:予約確認画面 URL:home/confirmation
   end
 
   def confirmed  #割り当て:予約確定表示画面 URL:home/user_reservation_list
@@ -61,6 +89,6 @@ class HomesController < ApplicationController
 
   def search  #ransack用の記載
     @q = Post.ransack(params[:q])
-
   end
+
 end
