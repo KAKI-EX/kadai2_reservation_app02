@@ -1,6 +1,9 @@
+
 <div class = "room_information">
   <%= image_tag(@post.room_photo.to_s, class:"reservationmenu_img") %>
   <%= image_tag(@user.avatar.to_s) %>
   <%= @post.room_name %>
   <%= @post.room_address_prefecture + @post.room_address_town_village  %>
 </div>
+
+

@@ -10,17 +10,30 @@ class HomesController < ApplicationController
     if user_signed_in?
       logger.debug current_user.id
     end
-
-
-
   end
 
-  def new
-    @post = Post.all
+  def new  #部屋の予約ページ
+    @post = Post.find(params[:id])
     @reservation = Reservation.new
+    @user = User.find(@post.user_id)
   end
 
-  def create #割り当て:部屋の予約ページ
+  def create
+    @reservation = Reservation.new(params.require(:reservation).permit(
+      :user_id,
+      :post_id,
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :room_fee
+    ))
+    if @reservation.save
+      flash[:notice] = "お部屋の予約が完了しました"
+      redirect_to posts_path
+    else
+      render "new"
+    end
   end
 
   def confirmation  #割り当て:予約確認画面 URL:home/confirmation
@@ -29,15 +42,12 @@ class HomesController < ApplicationController
   def confirmed  #割り当て:予約確定表示画面 URL:home/user_reservation_list
   end
 
-  def user_reservation_list  #割り当て:ユーザー予約一覧
-  end
-
   def search_result  #割り当て:部屋の検索結果一覧
     @posts_search = @q.result
-    @posts_for_kaminari = @posts_search.page(params[:page]).per(10)
+    @posts_for_kaminari = @posts_search.page(params[:page])
   end
 
-  def show
+  def show  #割り当て:ユーザー予約一覧
   end
 
   def edit  #割り当て:ユーザー予約変更
@@ -46,14 +56,11 @@ class HomesController < ApplicationController
   def update  #割り当て:ユーザー予約変更画面
   end
 
-
   def destroy
   end
 
-  def search
+  def search  #ransack用の記載
     @q = Post.ransack(params[:q])
 
   end
-
-
 end

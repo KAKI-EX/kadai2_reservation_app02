@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :reservations
+
   mount_uploader :room_photo, PostUploader #carrierwave用記載
 
   validates :user_id, presence: true

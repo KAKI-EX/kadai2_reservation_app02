@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'user_reservation_list', to: 'homes#user_reservation_list'
       get 'search_result', to: 'homes#search_result'
       get 'search'
+      get 'homes/new/:id', to: 'homes#new', as: 'new'
     end
   end
 end
