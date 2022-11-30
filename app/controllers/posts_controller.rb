@@ -25,7 +25,7 @@ class PostsController < ApplicationController
       flash[:notice] = "お部屋の登録が完了しました"
       redirect_to posts_path
     else
-      render "new",status: :unprocessable_entity
+      render "new"
     end
   end
 
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     flash[:notice] = "#{@post.room_address_prefecture} #{@post.room_address_town_village}の編集が完了しました"
     redirect_to posts_path
     else
-      render "edit",status: :unprocessable_entity
+      render "edit"
     end
   end
 

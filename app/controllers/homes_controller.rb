@@ -23,7 +23,7 @@ class HomesController < ApplicationController
     :room_fee,
     :total_fee
   ))
-  render new_homes_path(@reservation.post_id)
+  redirect_to new_homes_path(@reservation.post_id)
   end
 
   def new  #部屋の予約ページ
