@@ -33,7 +33,6 @@ class HomesController < ApplicationController
   end
 
   def confirmation  #割り当て:予約確認画面
-
     @reservation = Reservation.new(params.require(:reservation).permit(
       :user_id,
       :post_id,
@@ -48,7 +47,7 @@ class HomesController < ApplicationController
     @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
 
     if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
-      render new_homes_path
+      redirect_to new_homes_path(@reservation.post_id)
     end
   end
 
@@ -65,13 +64,15 @@ class HomesController < ApplicationController
     ))
     if @reservation.save
       flash[:notice] = "お部屋の予約が完了しました"
-      redirect_to posts_path
+      redirect_to confirmed_homes_path(@reservation)
     else
-      render "new"
+      redirect_to new_homes_path(@reservation.post_id)
     end
   end
 
   def confirmed  #割り当て:予約確定表示画面 URL:home/user_reservation_list
+    @reservation = Reservation.find(params[:id])
+    @post = Post.find(@reservation.post_id)
   end
 
   def search_result  #割り当て:部屋の検索結果一覧

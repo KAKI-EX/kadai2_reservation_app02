@@ -1,1 +1,20 @@
 <p>confimed.html</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ホテル名</th>
+      <th>チェックイン予定日</th>
+      <th>チェックアウト予定日</th>
+      <th>合計金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @post.room_name %></td>
+      <td><%= @reservation.check_in %></td>
+      <td><%= @reservation.check_out %></td>
+      <td><%= @reservation.total_fee %></td>
+    </tr>
+  </tbody>
+</table>
