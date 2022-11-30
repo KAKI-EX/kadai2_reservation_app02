@@ -81,6 +81,10 @@ class HomesController < ApplicationController
   end
 
   def show  #割り当て:ユーザー予約一覧
+    @reservations = Reservation.find(current_user.id)
+    @posts = Post.where(id: @reservations.post_id)
+    binding.pry
+
   end
 
   def edit  #割り当て:ユーザー予約変更

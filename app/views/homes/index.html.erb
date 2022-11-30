@@ -10,6 +10,9 @@
 <ul>
 <li><%= link_to "ログイン",new_user_session_path %></li>
 </ul>
+<ul>
+<li><%= link_to "予約一覧",home_path(current_user) %></li>
+</ul>
 
 <div class = link_image>
   <%= link_to image_tag("img_tokyo.jpeg", class:"tokyo-img"), search_result_homes_path(q:{room_address_prefecture_cont: "東京"}) %>

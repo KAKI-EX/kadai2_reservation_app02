@@ -1,9 +1,30 @@
 
-<div class = "room_information">
-  <%= image_tag(@post.room_photo.to_s, class:"reservationmenu_img") %>
-  <%= image_tag(@user.avatar.to_s) %>
-  <%= @post.room_name %>
-  <%= @post.room_address_prefecture + @post.room_address_town_village  %>
+<div class = "reservation_list">
+  <table>
+    <thead>
+      <tr>
+        <th>お部屋の写真</th>
+        <th>ルーム名</th>
+        <th>ルーム紹介</th>
+        <th>合計料金</th>
+        <th>チェックイン</th>
+        <th>チェックアウト</th>
+        <th>ご予約確定日</th>
+      </tr>
+    <thead>
+    <tbody>
+      <% @reservations.each do |ur| %>
+        <% @posts.each do |posts| %>
+          <%= image_tag(posts.room_photo.to_s, class:"reservationlist_img") %>
+        <% end %>%>
+        <%= ur.id %>
+        <%= ur.room_name %>
+      <% end %>%>
+      <tr>
+          <td></td>
+
+
+
+  <%= @posts.room_name %>
+  <%= @posts.room_address_prefecture + @posts.room_address_town_village  %>
 </div>
-
-
