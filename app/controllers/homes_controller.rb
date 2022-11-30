@@ -81,9 +81,18 @@ class HomesController < ApplicationController
   end
 
   def show  #割り当て:ユーザー予約一覧
-    @reservations = Reservation.find(current_user.id)
-    @posts = Post.where(id: @reservations.post_id)
-    binding.pry
+    @user = User.find(params[:id])
+    @reservations_relate = @user.reservations
+
+    @post = Post.where(id: @reservations_relate.select('post_id'))
+
+
+
+
+
+    #@reservations = Reservation.find(current_user.id)
+    #@posts = @reservation.posts
+
 
   end
 

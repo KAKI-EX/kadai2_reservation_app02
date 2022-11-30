@@ -13,18 +13,14 @@
       </tr>
     <thead>
     <tbody>
-      <% @reservations.each do |ur| %>
-        <% @posts.each do |posts| %>
-          <%= image_tag(posts.room_photo.to_s, class:"reservationlist_img") %>
-        <% end %>%>
-        <%= ur.id %>
-        <%= ur.room_name %>
-      <% end %>%>
+      <% @reservations_relate.each do |reserve| %>
+        <% @posts = Post.where(id: reserve.post_id) %>
+          <% @posts.each do |post| %>
+            <%= post.room_address_prefecture %>
+            <%= reserve.room_fee %>
+        <% end %>
+      <% end %>
       <tr>
           <td></td>
 
-
-
-  <%= @posts.room_name %>
-  <%= @posts.room_address_prefecture + @posts.room_address_town_village  %>
 </div>
