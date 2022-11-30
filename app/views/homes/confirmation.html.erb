@@ -9,28 +9,27 @@
       <td><%= @stay_count %></td>
     </tr>
 
-  <%= form_for @reservation, method: :post, url: homes_back_homes_path do |form| %>
+  <%= form_with model:@reservation, method: :post, url: homes_back_homes_path, local: true do |form| %>
     <%= form.hidden_field :user_id %>
     <%= form.hidden_field :post_id %>
     <%= form.hidden_field :check_in %>
     <%= form.hidden_field :check_out %>
-    <%= form.hidden_field :stay_count %>
+    <%= form.hidden_field :stay_count, value: @stay_count %>
     <%= form.hidden_field :peaple_count %>
     <%= form.hidden_field :room_fee %>
-    <%= form.hidden_field :total_fee %>
+    <%= form.hidden_field :total_fee, value: @total_fee %>
     <%= form.submit '入力画面に戻る' %>
   <% end %>
 
-    <%= form_for @reservation, method: :post, url: confirmed_homes_path do |form| %>
+  <%= form_with model:@reservation, method: :post, url: homes_path, local: true  do |form| %>
     <%= form.hidden_field :user_id %>
     <%= form.hidden_field :post_id %>
     <%= form.hidden_field :check_in %>
     <%= form.hidden_field :check_out %>
-    <%= form.hidden_field :stay_count %>
+    <%= form.hidden_field :stay_count, value: @stay_count %>
     <%= form.hidden_field :peaple_count %>
     <%= form.hidden_field :room_fee %>
-    <%= form.hidden_field :total_fee %>
+    <%= form.hidden_field :total_fee, value: @total_fee %>
     <%= form.submit '保存する' %>
   <% end %>
-
 </div>

@@ -33,7 +33,10 @@ class HomesController < ApplicationController
   end
 
   def confirmation  #割り当て:予約確認画面
-    @reservation = Reservation.new(params.require(:reservation).permit(:user_id,:post_id,
+
+    @reservation = Reservation.new(params.require(:reservation).permit(
+      :user_id,
+      :post_id,
       :check_in,
       :check_out,
       :stay_count,
@@ -57,7 +60,8 @@ class HomesController < ApplicationController
       :check_out,
       :stay_count,
       :peaple_count,
-      :room_fee
+      :room_fee,
+      :total_fee
     ))
     if @reservation.save
       flash[:notice] = "お部屋の予約が完了しました"
