@@ -105,7 +105,7 @@ class HomesController < ApplicationController
       flash[:notice] = "予約の変更が完了しました"
       redirect_to confirmed_homes_path(@reservation)
     else
-
+      redirect_to home_path(@reservation)
     end
   end
 
