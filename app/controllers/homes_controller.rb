@@ -83,23 +83,30 @@ class HomesController < ApplicationController
   def show  #割り当て:ユーザー予約一覧
     @user = User.find(params[:id])
     @reservations_relate = @user.reservations
-
-    @post = Post.where(id: @reservations_relate.select('post_id'))
-
-
-
-
-
-    #@reservations = Reservation.find(current_user.id)
-    #@posts = @reservation.posts
-
-
   end
 
   def edit  #割り当て:ユーザー予約変更
+    @reservation = Reservation.find(params[:id])
+    @post = Post.find(@reservation.post_id)
   end
 
   def update  #割り当て:ユーザー予約変更画面
+    @reservation = Reservation.find(params(:id))
+    @reservation = Reservation.new(params.require(:reservation).permit(
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :total_fee
+    ))
+    @total_fee = @reservation.room_fee * @reservation.peaple_count
+    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+    if @reservation.update
+      flash[:notice] = "予約の変更が完了しました"
+      redirect_to confirmed_homes_path(@reservation)
+    else
+
+    end
   end
 
   def destroy
