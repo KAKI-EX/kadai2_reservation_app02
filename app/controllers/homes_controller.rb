@@ -85,12 +85,31 @@ class HomesController < ApplicationController
     @reservations_relate = @user.reservations
   end
 
+  def edit_back
+  end
+
   def edit  #割り当て:ユーザー予約変更
     @reservation = Reservation.find(params[:id])
   end
 
   def edit_confirmation
+    @reservation = Reservation.update(params.require(:reservation).permit(
+      :user_id,
+      :post_id,
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :room_fee,
+      :total_fee
+    ))
+    @total_fee = @reservation.room_fee * @reservation.peaple_count
+    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
 
+    if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
+      redirect_to edit_home_path(@reservation.post_id)
+    end
+  end
 
   def update  #割り当て:ユーザー予約変更画面
     @reservation = Reservation.find(params[:id])

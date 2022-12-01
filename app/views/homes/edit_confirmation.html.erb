@@ -1,0 +1,37 @@
+<p>edit_confirmation</p>
+
+<div class = "edit_confimation">
+    <tr>
+      <td><%= @reservation.room_fee %></td>
+      <td><%= @reservation.check_in.strftime('%Y年%-m月%-d日') %></td>
+      <td><%= @reservation.check_out.strftime('%Y年%-m月%-d日') %></td>
+      <td><%= @reservation.stay_count %></td>
+      <td><%= @reservation.peaple_count %></td>
+      <td><%= @total_fee %></td>
+      <td><%= @stay_count %></td>
+    </tr>
+
+  <%= form_with model:@reservation, method: :post, url: homes_back_homes_path, local: true do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :post_id %>
+    <%= f.hidden_field :check_in %>
+    <%= f.hidden_field :check_out %>
+    <%= f.hidden_field :stay_count, value: @stay_count %>
+    <%= f.hidden_field :peaple_count %>
+    <%= f.hidden_field :room_fee %>
+    <%= f.hidden_field :total_fee, value: @total_fee %>
+    <%= f.submit '入力画面に戻る' %>
+  <% end %>
+
+  <%= form_with model:@reservation, method: :post, url: update_homes_path, local: true  do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :post_id %>
+    <%= f.hidden_field :check_in %>
+    <%= f.hidden_field :check_out %>
+    <%= f.hidden_field :stay_count, value: @stay_count %>
+    <%= f.hidden_field :peaple_count %>
+    <%= f.hidden_field :room_fee %>
+    <%= f.hidden_field :total_fee, value: @total_fee %>
+    <%= f.submit '保存する' %>
+  <% end %>
+</div>
