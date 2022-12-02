@@ -7,7 +7,7 @@
       <% end %>
     </ul>
   <% end %>
-  
+
 <div class = "reserve_modification">
   <%= form_with model:@reservation, url: {controller: 'homes', action: 'edit_confirmation'}, local: true do |f| %>
   <table>
@@ -22,8 +22,8 @@
     </tr>
 
     <tr>
-      <th><%= f.label :peaple_count, "ご宿泊人数"%></th>
-      <td><%= f.number_field :peaple_count, in: 1..10 %></td>
+      <th><%= f.label :people_count, "ご宿泊人数"%></th>
+      <td><%= f.number_field :people_count, in: 1..10 %></td>
     </tr>
       <%= f.hidden_field :room_fee %>
       <%= f.hidden_field :total_fee %>

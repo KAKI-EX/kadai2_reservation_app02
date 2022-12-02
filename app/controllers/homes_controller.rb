@@ -23,7 +23,7 @@ class HomesController < ApplicationController
       redirect_to new_homes_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
     else
       @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-      @total_fee = @reservation.room_fee * @reservation.peaple_count* @stay_count
+      @total_fee = @reservation.room_fee * @reservation.people_count* @stay_count
     end
   end
 
@@ -63,7 +63,7 @@ class HomesController < ApplicationController
       redirect_to edit_home_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
     else
       @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-      @total_fee = @reservation.room_fee * @reservation.peaple_count * @stay_count
+      @total_fee = @reservation.room_fee * @reservation.people_count * @stay_count
     end
   end
 
@@ -99,7 +99,7 @@ class HomesController < ApplicationController
       :check_in,
       :check_out,
       :stay_count,
-      :peaple_count,
+      :people_count,
       :room_fee,
       :total_fee
     )
