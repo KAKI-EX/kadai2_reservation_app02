@@ -1,5 +1,6 @@
 <p>edit</p>
 
+ <%= render "shared/error", obj: @reservation %>
 <div class = "reserve_modification">
   <%= form_with model:@reservation, url: {controller: 'homes', action: 'edit_confirmation'}, local: true do |f| %>
   <table>

@@ -33,6 +33,7 @@ class HomesController < ApplicationController
   end
 
   def confirmation  #割り当て:予約確認画面
+    
     @reservation = Reservation.new(params.require(:reservation).permit(
       :user_id,
       :post_id,
@@ -47,9 +48,7 @@ class HomesController < ApplicationController
     @total_fee = @reservation.room_fee * @reservation.peaple_count* @stay_count
 
 
-    if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
-      redirect_to new_homes_path(@reservation.post_id)
-    end
+
   end
 
   def create
