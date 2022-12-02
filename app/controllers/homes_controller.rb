@@ -1,5 +1,4 @@
 class HomesController < ApplicationController
-
   before_action :search
 
   def index
@@ -13,17 +12,13 @@ class HomesController < ApplicationController
   end
 
   def back  #予約確認画面で戻るを押した場合
-    @reservation = Reservation.new(params.require(:reservation).permit(
-    :user_id,
-    :post_id,
-    :check_in,
-    :check_out,
-    :stay_count,
-    :peaple_count,
-    :room_fee,
-    :total_fee
-  ))
-  redirect_to new_homes_path(@reservation.post_id)
+    @reservation = Reservation.new(params_permit)
+    redirect_to new_homes_path(@reservation.post_id)
+  end
+
+  def edit_back
+    @reservation = params_permit
+    redirect_to home_path(@reservation.user_id)
   end
 
   def new  #部屋の予約ページ
@@ -33,35 +28,17 @@ class HomesController < ApplicationController
   end
 
   def confirmation  #割り当て:予約確認画面
-    
-    @reservation = Reservation.new(params.require(:reservation).permit(
-      :user_id,
-      :post_id,
-      :check_in,
-      :check_out,
-      :stay_count,
-      :peaple_count,
-      :room_fee,
-      :total_fee
-    ))
-    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-    @total_fee = @reservation.room_fee * @reservation.peaple_count* @stay_count
-
-
-
+    @reservation = Reservation.new(params_permit)
+    if @reservation.invalid? || @reservation.check_in > @reservation.check_out #入力項目に空のものがあれば入力画面に遷移
+      redirect_to new_homes_path(@reservation.post_id)
+    else
+      @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+      @total_fee = @reservation.room_fee * @reservation.peaple_count* @stay_count
+    end
   end
 
   def create
-    @reservation = Reservation.new(params.require(:reservation).permit(
-      :user_id,
-      :post_id,
-      :check_in,
-      :check_out,
-      :stay_count,
-      :peaple_count,
-      :room_fee,
-      :total_fee
-    ))
+    @reservation = Reservation.new(params_permit)
     if @reservation.save
       flash[:notice] = "お部屋の予約が完了しました"
       redirect_to confirmed_homes_path(@reservation)
@@ -85,36 +62,13 @@ class HomesController < ApplicationController
     @reservations_relate = @user.reservations
   end
 
-  def edit_back
-    @reservation = params.require(:reservation).permit(
-      :user_id,
-      :post_id,
-      :check_in,
-      :check_out,
-      :stay_count,
-      :peaple_count,
-      :room_fee,
-      :total_fee
-    )
-    redirect_to home_path(@reservation.user_id)
-  end
-
   def edit  #割り当て:ユーザー予約変更
     @reservation = Reservation.find(params[:id])
   end
 
   def edit_confirmation
     @reservation = Reservation.find(params[:id])
-    @reservation.attributes = params.require(:reservation).permit(
-      :user_id,
-      :post_id,
-      :check_in,
-      :check_out,
-      :stay_count,
-      :peaple_count,
-      :room_fee,
-      :total_fee
-    )
+    @reservation.attributes = params_permit
     @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
     @total_fee = @reservation.room_fee * @reservation.peaple_count * @stay_count
 
@@ -125,16 +79,7 @@ class HomesController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    if @reservation.update(params.require(:reservation).permit(
-      :user_id,
-      :post_id,
-      :check_in,
-      :check_out,
-      :stay_count,
-      :peaple_count,
-      :room_fee,
-      :total_fee
-    ))
+    if @reservation.update(params_permit)
       flash[:notice] = "予約の変更が完了しました"
       redirect_to confirmed_homes_path(@reservation)
     else
@@ -155,4 +100,18 @@ class HomesController < ApplicationController
     @q = Post.ransack(params[:q])
   end
 
+  private
+
+  def params_permit
+    params.require(:reservation).permit(
+      :user_id,
+      :post_id,
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :room_fee,
+      :total_fee
+    )
+  end
 end
