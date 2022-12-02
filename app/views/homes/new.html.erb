@@ -5,7 +5,17 @@
   <%= @post.room_address_prefecture + @post.room_address_town_village  %>
 </div>
 
+
+
 <%= form_with model:@reservation,url: confirmation_homes_path(@reservation), local: true do |f| %>
+  <% if flash[:error].present? %>
+    <ul class="errors">
+      <% flash[:error].each do |e| %>
+        <li><%= e %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
   <table>
     <tr>
       <p><%= @post.room_price %>

@@ -11,26 +11,26 @@ class HomesController < ApplicationController
     end
   end
 
-  def back  #予約確認画面で戻るを押した場合
+  def back                                        #予約確認画面で戻るを押した場合
     @reservation = Reservation.new(params_permit)
     redirect_to new_homes_path(@reservation.post_id)
   end
 
-  def edit_back
+  def edit_back                                   #予約編集画面で戻るを押した場合
     @reservation = params_permit
     redirect_to home_path(@reservation.user_id)
   end
 
-  def new  #部屋の予約ページ
+  def new                                         #割り当て：部屋の予約ページ
     @post = Post.find(params[:id])
     @reservation = Reservation.new
     @user = User.find(@post.user_id)
   end
 
-  def confirmation  #割り当て:予約確認画面
+  def confirmation                                #割り当て:予約確認画面
     @reservation = Reservation.new(params_permit)
-    if @reservation.invalid? || @reservation.check_in > @reservation.check_out #入力項目に空のものがあれば入力画面に遷移
-      redirect_to new_homes_path(@reservation.post_id)
+    if @reservation.invalid? || @reservation.check_in > @reservation.check_out
+      redirect_to new_homes_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
     else
       @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
       @total_fee = @reservation.room_fee * @reservation.peaple_count* @stay_count
@@ -47,22 +47,22 @@ class HomesController < ApplicationController
     end
   end
 
-  def confirmed  #割り当て:予約確定表示画面 URL:home/user_reservation_list
+  def confirmed                                    #割り当て:予約確定表示画面
     @reservation = Reservation.find(params[:id])
     @post = Post.find(@reservation.post_id)
   end
 
-  def search_result  #割り当て:部屋の検索結果一覧
+  def search_result                                #割り当て:部屋の検索結果一覧
     @posts_search = @q.result
     @posts_for_kaminari = @posts_search.page(params[:page])
   end
 
-  def show  #割り当て:ユーザー予約一覧
+  def show                                         #割り当て:ユーザー予約一覧
     @user = User.find(params[:id])
     @reservations_relate = @user.reservations
   end
 
-  def edit  #割り当て:ユーザー予約変更
+  def edit                                         #割り当て:ユーザー予約変更
     @reservation = Reservation.find(params[:id])
   end
 
@@ -72,7 +72,7 @@ class HomesController < ApplicationController
     @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
     @total_fee = @reservation.room_fee * @reservation.peaple_count * @stay_count
 
-    if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
+    if @reservation.invalid?
       redirect_to edit_home_path(@reservation.post_id)
     end
   end
