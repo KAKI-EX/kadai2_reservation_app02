@@ -11,17 +11,7 @@
       <td><%= @stay_count %></td>
     </tr>
 
-  <%= form_with model:@reservation, url:{controller: 'homes', action: 'edit_back'}, local: true do |f| %>
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :post_id %>
-    <%= f.hidden_field :check_in %>
-    <%= f.hidden_field :check_out %>
-    <%= f.hidden_field :stay_count, value: @stay_count %>
-    <%= f.hidden_field :peaple_count %>
-    <%= f.hidden_field :room_fee %>
-    <%= f.hidden_field :total_fee, value: @total_fee %>
-    <%= f.submit '入力画面に戻る' %>
-  <% end %>
+  <%= link_to "編集画面へ戻る",edit_home_path(@reservation.post_id) %>
 
   <%= form_with model:@reservation,url: update_homes_path, local: true  do |f| %>
     <%= f.hidden_field :user_id %>

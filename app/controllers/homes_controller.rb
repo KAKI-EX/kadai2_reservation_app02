@@ -11,16 +11,6 @@ class HomesController < ApplicationController
     end
   end
 
-  def back                                        #予約確認画面で戻るを押した場合
-    @reservation = Reservation.new(params_permit)
-    redirect_to new_homes_path(@reservation.post_id)
-  end
-
-  def edit_back                                   #予約編集画面で戻るを押した場合
-    @reservation = params_permit
-    redirect_to home_path(@reservation.user_id)
-  end
-
   def new                                         #割り当て：部屋の予約ページ
     @post = Post.find(params[:id])
     @reservation = Reservation.new
