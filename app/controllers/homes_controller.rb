@@ -69,11 +69,11 @@ class HomesController < ApplicationController
   def edit_confirmation
     @reservation = Reservation.find(params[:id])
     @reservation.attributes = params_permit
-    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-    @total_fee = @reservation.room_fee * @reservation.peaple_count * @stay_count
-
-    if @reservation.invalid?
-      redirect_to edit_home_path(@reservation.post_id)
+    if @reservation.invalid? || @reservation.check_in > @reservation.check_out
+      redirect_to edit_home_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
+    else
+      @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+      @total_fee = @reservation.room_fee * @reservation.peaple_count * @stay_count
     end
   end
 
