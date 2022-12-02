@@ -23,4 +23,5 @@
 
     <%= f.submit '予約変更を完了する' %>
   <% end %>
+    <%= link_to "削除",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" } %>
 </div>

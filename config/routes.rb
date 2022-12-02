@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       post 'edit_back'                                          #予約編集確認画面からedit画面へ戻るアクション
       patch '/:id' ,to: 'homes#update', as: 'update'                  #updateアクションがエラー。明示的に変更。
 
+
     end
   end
 end

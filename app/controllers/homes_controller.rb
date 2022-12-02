@@ -43,8 +43,9 @@ class HomesController < ApplicationController
       :room_fee,
       :total_fee
     ))
-    @total_fee = @reservation.room_fee * @reservation.peaple_count
     @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+    @total_fee = @reservation.room_fee * @reservation.peaple_count* @stay_count
+
 
     if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
       redirect_to new_homes_path(@reservation.post_id)
@@ -86,6 +87,17 @@ class HomesController < ApplicationController
   end
 
   def edit_back
+    @reservation = params.require(:reservation).permit(
+      :user_id,
+      :post_id,
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :room_fee,
+      :total_fee
+    )
+    redirect_to home_path(@reservation.user_id)
   end
 
   def edit  #割り当て:ユーザー予約変更
@@ -93,7 +105,28 @@ class HomesController < ApplicationController
   end
 
   def edit_confirmation
-    @reservation = Reservation.update(params.require(:reservation).permit(
+    @reservation = Reservation.find(params[:id])
+    @reservation.attributes = params.require(:reservation).permit(
+      :user_id,
+      :post_id,
+      :check_in,
+      :check_out,
+      :stay_count,
+      :peaple_count,
+      :room_fee,
+      :total_fee
+    )
+    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+    @total_fee = @reservation.room_fee * @reservation.peaple_count * @stay_count
+
+    if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
+      redirect_to edit_home_path(@reservation.post_id)
+    end
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    if @reservation.update(params.require(:reservation).permit(
       :user_id,
       :post_id,
       :check_in,
@@ -103,29 +136,6 @@ class HomesController < ApplicationController
       :room_fee,
       :total_fee
     ))
-    binding.pry
-    @total_fee = @reservation.room_fee * @reservation.peaple_count
-    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-
-    if @reservation.invalid? #入力項目に空のものがあれば入力画面に遷移
-      redirect_to edit_home_path(@reservation.post_id)
-    end
-  end
-
-  def update  #割り当て:ユーザー予約変更画面
-    @reservation = Reservation.find(params[:id])
-    @reservation = Reservation.update(params.require(:reservation).permit(
-      :check_in,
-      :check_out,
-      :stay_count,
-      :peaple_count,
-      :room_fee,
-      :total_fee
-    ))
-
-    @total_fee = @reservation.room_fee * @reservation.peaple_count
-    @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-    if @reservation.update
       flash[:notice] = "予約の変更が完了しました"
       redirect_to confirmed_homes_path(@reservation)
     else
@@ -134,6 +144,12 @@ class HomesController < ApplicationController
   end
 
   def destroy
+    def destroy
+      @reservation = Reservation.find(params[:id])
+      @reservation.destroy
+      flash[:notice] = "予約を削除しました"
+      redirect_to home_path(current_user.id)
+    end
   end
 
   def search  #ransack用の記載
