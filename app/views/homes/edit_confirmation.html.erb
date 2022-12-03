@@ -11,7 +11,7 @@
       <td><%= @stay_count %></td>
     </tr>
 
-  <%= link_to "編集画面へ戻る",edit_home_path(@reservation.post_id) %>
+  <%= link_to "編集画面へ戻る",edit_home_path(@reservation.id) %>
 
   <%= form_with model:@reservation,url: update_homes_path, local: true  do |f| %>
     <%= f.hidden_field :user_id %>

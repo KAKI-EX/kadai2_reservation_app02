@@ -1,14 +1,20 @@
 class HomesController < ApplicationController
   before_action :search
+  before_action :authenticate_user!, except: [:index, :new, :search_result] #未ログインユーザーは案件の閲覧のみ
+
+
 
   def index
     @posts = Post.all
-    # user_signed_in?: ログイン済みの場合はtrueを返す。
-    # current_user: ログイン済みの場合はログインユーザーを返す。
     # ログイン済みの場合、ログインユーザーのidをログに書き込む。
     if user_signed_in?
       logger.debug current_user.id
     end
+  end
+
+  def search_result                                #割り当て:部屋の検索結果一覧
+    @posts_search = @q.result
+    @posts_for_kaminari = @posts_search.page(params[:page])
   end
 
   def new                                         #割り当て：部屋の予約ページ
@@ -25,10 +31,12 @@ class HomesController < ApplicationController
       @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
       @total_fee = @reservation.room_fee * @reservation.people_count* @stay_count
     end
+    not_match_reservationuserid_currentuserid  #万が一、予約したユーザーとcurrent_userが一致しない場合
   end
 
   def create
     @reservation = Reservation.new(params_permit)
+    not_match_reservationuserid_currentuserid  #万が一、予約したユーザーとcurrent_userが一致しない場合
     if @reservation.save
       flash[:notice] = "お部屋の予約が完了しました"
       redirect_to confirmed_homes_path(@reservation)
@@ -37,27 +45,26 @@ class HomesController < ApplicationController
     end
   end
 
-  def confirmed                                    #割り当て:予約確定表示画面
+  def confirmed                                    #割り当て:予約済み情報表示画面
     @reservation = Reservation.find(params[:id])
     @post = Post.find(@reservation.post_id)
-  end
-
-  def search_result                                #割り当て:部屋の検索結果一覧
-    @posts_search = @q.result
-    @posts_for_kaminari = @posts_search.page(params[:page])
+    not_match_reservationuserid_currentuserid  #万が一、予約したユーザーとcurrent_userが一致しない場合
   end
 
   def show                                         #割り当て:ユーザー予約一覧
     @user = User.find(params[:id])
     @reservations_relate = @user.reservations
+    not_match_userid_current_userid   #万が一、user_idとcurrent_userが一致しない場合
   end
 
   def edit                                         #割り当て:ユーザー予約変更
     @reservation = Reservation.find(params[:id])
+    not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
   end
 
   def edit_confirmation
     @reservation = Reservation.find(params[:id])
+    not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
     @reservation.attributes = params_permit
     if @reservation.invalid? || @reservation.check_in > @reservation.check_out
       redirect_to edit_home_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
@@ -69,6 +76,7 @@ class HomesController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
+    not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
     if @reservation.update(params_permit)
       flash[:notice] = "予約の変更が完了しました"
       redirect_to confirmed_homes_path(@reservation)
@@ -80,6 +88,7 @@ class HomesController < ApplicationController
   def destroy
     def destroy
       @reservation = Reservation.find(params[:id])
+      not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
       @reservation.destroy
       flash[:notice] = "予約を削除しました"
       redirect_to home_path(current_user.id)
@@ -103,5 +112,18 @@ class HomesController < ApplicationController
       :room_fee,
       :total_fee
     )
+  end
+
+  def not_match_reservationuserid_currentuserid #万が一current_user.idとReservation.user_idが一致しない場合の対策
+    unless @reservation.user_id == current_user.id
+      flash[:alert] = "error reservation:予期しないエラーが発生しました"
+      redirect_to root_path
+    end
+  end
+
+  def not_match_userid_current_userid #万が一current_user.idとUser.idが一致しない場合の対策
+    unless @user.id == current_user.id
+      redirect_to root_path
+    end
   end
 end
