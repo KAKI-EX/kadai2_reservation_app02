@@ -17,6 +17,10 @@ class HomesController < ApplicationController
     @posts_for_kaminari = @posts_search.page(params[:page])
   end
 
+  def search  #ransack用の記載
+    @q = Post.ransack(params[:q])
+  end
+
   def new                                         #割り当て：部屋の予約ページ
     @post = Post.find(params[:id])
     @reservation = Reservation.new
@@ -93,10 +97,6 @@ class HomesController < ApplicationController
       flash[:notice] = "予約を削除しました"
       redirect_to home_path(current_user.id)
     end
-  end
-
-  def search  #ransack用の記載
-    @q = Post.ransack(params[:q])
   end
 
 
