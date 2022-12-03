@@ -31,12 +31,12 @@ class HomesController < ApplicationController
       @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
       @total_fee = @reservation.room_fee * @reservation.people_count* @stay_count
     end
-    not_match_reservationuserid_currentuserid  #万が一、予約したユーザーとcurrent_userが一致しない場合
+    not_match_reservationuserid_currentuserid
   end
 
   def create
     @reservation = Reservation.new(params_permit)
-    not_match_reservationuserid_currentuserid  #万が一、予約したユーザーとcurrent_userが一致しない場合
+    not_match_reservationuserid_currentuserid
     if @reservation.save
       flash[:notice] = "お部屋の予約が完了しました"
       redirect_to confirmed_homes_path(@reservation)
@@ -48,23 +48,23 @@ class HomesController < ApplicationController
   def confirmed                                    #割り当て:予約済み情報表示画面
     @reservation = Reservation.find(params[:id])
     @post = Post.find(@reservation.post_id)
-    not_match_reservationuserid_currentuserid  #万が一、予約したユーザーとcurrent_userが一致しない場合
+    not_match_reservationuserid_currentuserid
   end
 
   def show                                         #割り当て:ユーザー予約一覧
     @user = User.find(params[:id])
     @reservations_relate = @user.reservations
-    not_match_userid_current_userid   #万が一、user_idとcurrent_userが一致しない場合
+    not_match_userid_current_userid
   end
 
   def edit                                         #割り当て:ユーザー予約変更
     @reservation = Reservation.find(params[:id])
-    not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
+    not_match_reservationuserid_currentuserid
   end
 
   def edit_confirmation
     @reservation = Reservation.find(params[:id])
-    not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
+    not_match_reservationuserid_currentuserid
     @reservation.attributes = params_permit
     if @reservation.invalid? || @reservation.check_in > @reservation.check_out
       redirect_to edit_home_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
@@ -76,7 +76,7 @@ class HomesController < ApplicationController
 
   def update
     @reservation = Reservation.find(params[:id])
-    not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
+    not_match_reservationuserid_currentuserid
     if @reservation.update(params_permit)
       flash[:notice] = "予約の変更が完了しました"
       redirect_to confirmed_homes_path(@reservation)
@@ -88,7 +88,7 @@ class HomesController < ApplicationController
   def destroy
     def destroy
       @reservation = Reservation.find(params[:id])
-      not_match_reservationuserid_currentuserid   #万が一、予約したユーザーとcurrent_userが一致しない場合
+      not_match_reservationuserid_currentuserid
       @reservation.destroy
       flash[:notice] = "予約を削除しました"
       redirect_to home_path(current_user.id)
@@ -99,7 +99,9 @@ class HomesController < ApplicationController
     @q = Post.ransack(params[:q])
   end
 
+
   private
+
 
   def params_permit
     params.require(:reservation).permit(

@@ -10,17 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(
-      :user_id,
-      :room_name,
-      :room_price,
-      :room_info,
-      :room_address_postcode,
-      :room_address_prefecture,
-      :room_address_town_village,
-      :room_address_other,
-      :room_photo
-    ))
+    @post = Post.new(params_permit)
     if @post.save
       flash[:notice] = "お部屋の登録が完了しました"
       redirect_to posts_path
@@ -31,25 +21,18 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    not_match_postid_currentuserid
   end
 
   def edit
     @post = Post.find(params[:id])
+    not_match_postid_currentuserid
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params.require(:post).permit(
-      :user_id,
-      :room_name,
-      :room_price,
-      :room_info,
-      :room_address_postcode,
-      :room_address_prefecture,
-      :room_address_town_village,
-      :room_address_other,
-      :room_photo
-    ))
+    if @post.update(params_permit)
+    not_match_postid_currentuserid
     flash[:notice] = "#{@post.room_address_prefecture} #{@post.room_address_town_village}の編集が完了しました"
     redirect_to posts_path
     else
@@ -59,9 +42,35 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    not_match_postid_currentuserid
     @post.destroy
     flash[:notice] = "#{@post.room_address_prefecture} #{@post.room_address_town_village}のお部屋の情報を削除しました"
     redirect_to posts_path
+  end
+
+
+  private
+
+
+  def params_permit
+    params.require(:post).permit(
+      :user_id,
+      :room_name,
+      :room_price,
+      :room_info,
+      :room_address_postcode,
+      :room_address_prefecture,
+      :room_address_town_village,
+      :room_address_other,
+      :room_photo
+    )
+  end
+
+  def not_match_postid_currentuserid    #万が一current_user.idとPost.user_idが一致しない場合の対策
+    unless @post.user_id == current_user.id
+      flash[:alert] = "error reservation:予期しないエラーが発生しました"
+      redirect_to posts_path
+    end
   end
 
 end
