@@ -30,8 +30,12 @@
             <%= image_tag(current_user.avatar.to_s, class:"user_avatar") %>
           </div>
           <% else %>
+          <div class = "before_login">
+            <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
+            <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+          </div>
           <% end %>
-        </div>
+      </div>
 
       <div id="nav-wrapper" class="nav-wrapper">
         <div class="hamburger" id="js-hamburger">
@@ -58,11 +62,17 @@
         </div>
       </div>
     </div>
+    <div class = "system_message">
+    <% if notice.nil? || alert.nil? %>
+    <% else %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    </div>
   </header>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
     <%= yield %>
   </body>

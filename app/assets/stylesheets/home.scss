@@ -2,10 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.tokyo-img,.osaka-img,.kyoto-img,.sapporo-img{
+
+
+.container{
   width: 100%;
+}
+
+.top{
+  background-image: url(/assets/img_cover_top.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+}
+
+.tokyo-img,.osaka-img,.kyoto-img,.sapporo-img{
+  width: 20%;
   height: 360px;
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 25px;
+}
+
+.container-fluid{
+  padding: 0;
 }

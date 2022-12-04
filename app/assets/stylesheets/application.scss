@@ -49,6 +49,13 @@
     top: 1.5%;
   }
 
+  .before_login{
+    position: absolute;
+    right: 8%;
+    top: 1.5%;
+    list-style: none;
+  }
+
   .user_avatar {
     width: 75px;
     height: 75px;
@@ -181,3 +188,5 @@ footer{
   padding: 20px 0px 20px 0px;
   margin-bottom: 0px;
 }
+
+
