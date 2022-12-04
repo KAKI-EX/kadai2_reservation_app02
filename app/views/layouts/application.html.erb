@@ -27,10 +27,13 @@
             <% end %>
             <!--ここまで-->
           </div>
+          <% if user_signed_in? %>
           <div class = "user_profile">
             <%= current_user.name %>
             <%= image_tag(current_user.avatar.to_s, class:"user_avatar") %>
           </div>
+          <% else %>
+          <% end %>
         </div>
 
       <div id="nav-wrapper" class="nav-wrapper">
