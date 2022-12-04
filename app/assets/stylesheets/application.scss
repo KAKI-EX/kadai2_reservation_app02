@@ -15,17 +15,59 @@
  */
   @import "bootstrap";
 
+  .background_color{
+    background-color:#f4f0e6;
+  }
 
+  .header_contents{
+    align-items: center;
+  }
+
+  .header_contents a{
+    width: 20%;
+  }
   .logo{
-    width:11%;
-    height:auto;
+    position: relative;
+    width: 20%;
+    margin: 10px 0px;
   }
 
-  .background_image{
-    background-color:#f4f0e6
+  .search_field{
+    position: absolute;
+    left: 23%;
+    top: 6%
+
   }
 
+  .user_profile{
+    position: absolute;
+    right: 8%;
+    top: 1.5%;
+  }
 
+  .user_avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    min-width: 75px;
+    min-height: 75px;
+    opacity: 1;
+    object-fit: cover;
+    margin-left: 10px;
+  }
+
+  .links{
+    margin: 80px;
+    margin-left:20px
+  }
+
+  .links li{
+    list-style: none;
+    box-sizing: content-box;
+    padding:20px 0px;
+    font-size: 20px;
+    width: max-content;
+  }
 /*
 hamburger(ハンバーガーアイコン)
 =================================== */
@@ -82,9 +124,9 @@ sp-nav(ナビ)
   position: fixed;
   right: -100%; /*ハンバーガーがクリックされる前はWindow右側に隠す*/
   top: 0;
-  width: 25%; /* 出てくるスライドメニューの幅 */
+  width: 18%; /* 出てくるスライドメニューの幅 */
   height: 100vh;
-  background-color: #fff;
+  background-color: #f4f0e6;
   transition: all 0.5s;
   z-index: 200;
   overflow-y: auto; /* メニューが多くなったらスクロールできるように */

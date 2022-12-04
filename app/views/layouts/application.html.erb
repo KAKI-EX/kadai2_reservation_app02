@@ -14,42 +14,53 @@
 
 
   <header>
-    <%= link_to image_tag("logo_transparent.png", class:"logo"),root_path  %>
-    <div id="nav-wrapper" class="nav-wrapper">
-      <div class="hamburger" id="js-hamburger">
-        <span class="hamburger__line hamburger__line--1"></span>
-        <span class="hamburger__line hamburger__line--2"></span>
-        <span class="hamburger__line hamburger__line--3"></span>
+    <div class = "background_color">
+      <div class = "header_contents">
+        <%= link_to image_tag("logo_transparent.png", class:"logo"),root_path  %>
+          <!--ransack用の記述-->
+          <div class = "search_field">
+            <%= search_form_for @q, url: search_result_homes_path do |f| %>
+            <%= f.search_field :room_address_prefecture_or_room_address_town_village_cont,placeholder: "エリア検索" %>
+            <%= f.submit "検索" %>
+            <%= f.search_field :room_name_or_room_info_cont,placeholder: "フリーワード検索" %>
+            <%= f.submit "検索" %>
+            <% end %>
+            <!--ここまで-->
+          </div>
+          <div class = "user_profile">
+            <%= current_user.name %>
+            <%= image_tag(current_user.avatar.to_s, class:"user_avatar") %>
+          </div>
+        </div>
+
+      <div id="nav-wrapper" class="nav-wrapper">
+        <div class="hamburger" id="js-hamburger">
+          <span class="hamburger__line hamburger__line--1"></span>
+          <span class="hamburger__line hamburger__line--2"></span>
+          <span class="hamburger__line hamburger__line--3"></span>
+        </div>
+        <nav class="sp-nav">
+          <% if user_signed_in? %>
+              <ul class = "links">
+                <li><%= link_to "トップ", root_path, class:"link" %></li>
+                <li><%= link_to "お部屋の貸し出し", posts_path, class:"link" %>
+                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link" %>
+                <li><%= link_to "予約一覧",home_path(current_user), class:"link" %>
+              </ul>
+            <% else %>
+              <ul class = "links">
+                <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
+                <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+              </ul>
+          <% end %>
+        </nav>
+        <div class="black-bg" id="js-black-bg"></div>
       </div>
-      <nav class="sp-nav">
-
-        <% if user_signed_in? %>
-            <ul class = "links">
-              <li><%= link_to "トップ", root_path, class:"link" %></li>
-              <li><%= link_to "お部屋の貸し出し", posts_path, class:"link" %>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link" %>
-              <li><%= link_to "予約一覧",home_path(current_user), class:"link" %>
-            </ul>
-          <% else %>
-            <ul class = "links">
-              <%= link_to "新規会員登録", new_user_registration_path, class:"link" %>
-              <%= link_to "ログイン", new_user_session_path, class:"link" %>
-            </ul>
-        <% end %>
-
-      </nav>
-      <div class="black-bg" id="js-black-bg"></div>
     </div>
   </header>
+
   <body>
-    <!--ransack用の記述-->
-    <%= search_form_for @q, url: search_result_homes_path do |f| %>
-      <%= f.search_field :room_address_prefecture_or_room_address_town_village_cont,placeholder: "エリア検索" %>
-      <%= f.submit "検索" %>
-      <%= f.search_field :room_name_or_room_info_cont,placeholder: "フリーワード検索" %>
-      <%= f.submit "検索" %>
-    <% end %>
-    <!--ここまで-->
+
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
