@@ -5,13 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
 
   <header>
     <div class = "background_color">
@@ -57,17 +54,21 @@
               </ul>
           <% end %>
         </nav>
-        <div class="black-bg" id="js-black-bg"></div>
+        <div class="black-bg" id="js-black-bg">
+        </div>
       </div>
     </div>
   </header>
 
   <body>
-
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
   </body>
+  <footer>
+    <div class = "background_color_footer">
+      <p>POTEPAN.INC</p>
+    <div>
+  </footer>
 </html>

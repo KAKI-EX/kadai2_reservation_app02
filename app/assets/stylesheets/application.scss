@@ -14,6 +14,10 @@
  *= require_self
  */
   @import "bootstrap";
+  *{
+    margin:0;
+    padding: 0;
+  }
 
   .background_color{
     background-color:#f4f0e6;
@@ -35,7 +39,7 @@
   .search_field{
     position: absolute;
     left: 23%;
-    top: 6%
+    top: 5%
 
   }
 
@@ -160,4 +164,20 @@ black-bg(ハンバーガーメニュー解除用bg)
 .open .black-bg {
   opacity: 0.3;
   visibility: visible;
+}
+
+footer{
+
+}
+
+.background_color_footer {
+  background-color:#f4f0e6;
+}
+
+.background_color_footer p{
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 20px 0px 20px 0px;
+  margin-bottom: 0px;
 }
