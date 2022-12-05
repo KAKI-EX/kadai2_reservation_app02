@@ -1,10 +1,33 @@
 
+<div class = "container">
+  <div class = "result_counter">
+    <%= "検索結果 : #{@posts_search.count}件"%>
+  </div>
 
-<% if @posts_for_kaminari.present?%>
-  <% @posts_for_kaminari.each do |post| %>
-<%= link_to image_tag(post.room_photo.to_s, class:"search_result"), new_homes_path(post.id) %>
-    <% end %>
-  <% else %>
-    <p>該当する部屋はありませんでした。</p>
-  <% end %>
-  <%= paginate @posts_for_kaminari %>
+  <div class = "row">
+    <div class='infomations'>
+      <% if @posts_for_kaminari.present?%>
+        <% @posts_for_kaminari.each do |post| %>
+
+          <div class = "information_block">
+            <a href="<%= "#{new_homes_path(post.id)}" %>",class = "wholelink">
+              <div class = "room_information">
+                <div class = "room_image">
+                  <%= image_tag(post.room_photo.to_s, class:"search_result")  %>
+                </div>
+                <div class = "room_discription">
+                  <h2><%= post.room_name %></h2>
+                  <h3><%= post.room_address_prefecture %><%= post.room_address_town_village %></h3>
+                  <p><%= "￥#{post.room_price}" %></p>
+                </div>
+              </div>
+            </a>
+          </div>
+      <% end %>
+      <% else %>
+        <p>該当する部屋はありませんでした。</p>
+      <% end %>
+    </div>
+  </div>
+    <%= paginate @posts_for_kaminari %>
+</div>
