@@ -15,11 +15,78 @@
   height: 650px;
 }
 
-.tokyo-img,.osaka-img,.kyoto-img,.sapporo-img{
-  width: 20%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 25px;
+.index_search{
+  padding: 25px;
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  width: fit-content;
+  background-color: white;
+  border-radius: 10px;
 }
 
+.index_search h3{
+  font-size: 30px;
+}
+
+.index_search p{
+  font-size: 20px;
+}
+
+.search_box{
+  width: 100%;
+  height: 35px;
+}
+
+.search_button{
+  width: 100%;
+  height: 35px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+
+}
+
+.recomend_area{
+  padding: 50px;
+}
+
+.recomend_area p{
+  font-size: 30px;
+}
+
+.link_image{
+  margin-top: 30px;
+  text-align: center;
+display: flex;
+column-gap: 60px;
+}
+
+.tokyo,.oosaka,.kyoto,.sapporo{
+  position: relative;
+  width: 25%;
+}
+
+.tokyo-img,.osaka-img,.kyoto-img,.sapporo-img{
+border-radius: 10px;
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+
+}
+
+.link_image span{
+  width: 100%;
+  display: block;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  z-index: 1;
+  text-align: center;
+  bottom: 15px;
+  margin: 0 auto;
+  font-size: 30px;
+}
