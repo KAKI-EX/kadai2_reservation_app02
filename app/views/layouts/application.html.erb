@@ -26,7 +26,7 @@
           </div>
           <% if user_signed_in? %>
           <div class = "user_profile">
-            <%= current_user.name %>
+            <span><%= current_user.name %></span>
             <%= image_tag(current_user.avatar.to_s, class:"user_avatar") %>
           </div>
           <% else %>
@@ -62,13 +62,21 @@
         </div>
       </div>
     </div>
-    <div class = "system_message">
-    <% if notice.nil? || alert.nil? %>
-    <% else %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-
+    <div class = "messages">
+      <div class = "system_message">
+      <% if notice.nil? || alert.nil? %>
+      <% else %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      <% end %>
+      <% if flash[:error].present? %>
+        <ul class="errors">
+          <% flash[:error].each do |e| %>
+            <li><%= e %></li>
+        </ul>
+      <% end %>
+      <% end %>
+      </div>
     </div>
   </header>
 

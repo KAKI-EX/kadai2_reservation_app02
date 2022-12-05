@@ -19,6 +19,7 @@
   }
 
   .background_color{
+    height: 100px;
     background-color:#f4f0e6;
   }
 
@@ -31,16 +32,24 @@
   }
   .logo{
     position: relative;
-    width: 15%;
+    width: 16vw;
     margin: 10px 0px;
   }
 
   .search_field{
+    width: 70%;
     position: absolute;
     left: 23%;
-    top: 5%
-
+    top: 6%
   }
+
+  .search_field #q_room_address_prefecture_or_room_address_town_village_cont,
+  .search_field #q_room_name_or_room_info_cont{
+    height: 30px;
+    width: 15%;
+  }
+
+
 
   .user_profile{
     position: absolute;
@@ -68,6 +77,12 @@
     opacity: 1;
     object-fit: cover;
     margin-left: 10px;
+  }
+
+  .user_profile span{
+    position: absolute;
+    top:22px;
+    right: 120px;
   }
 
   .links{
@@ -176,10 +191,6 @@ black-bg(ハンバーガーメニュー解除用bg)
   visibility: visible;
 }
 
-footer{
-
-}
-
 .background_color_footer {
   background-color:#f4f0e6;
 }
@@ -188,6 +199,23 @@ footer{
   margin-top: 0;
   margin-bottom: 1rem;
   text-align: center;
-  padding: 20px 0px 20px 0px;
+  padding: 50px 0px 20px 0px;
   margin-bottom: 0px;
+  height: 60px;
+}
+
+.messages{
+  margin-top: 10px;
+  width: 33%;
+  text-align: center;
+  justify-content: center;
+  margin-left: 30%;
+
+
+}
+
+.messages li{
+  display: block;
+  background-color: red;
+  color: white;
 }
