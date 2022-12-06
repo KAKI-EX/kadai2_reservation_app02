@@ -123,13 +123,14 @@ class HomesController < ApplicationController
 
   def not_match_reservationuserid_currentuserid #万が一current_user.idとReservation.user_idが一致しない場合の対策
     unless @reservation.user_id == current_user.id
-      flash[:alert] = "error reservation:予期しないエラーが発生しました"
+      flash[:alert] = "error:#{action_name}予期しないエラーが発生しました"
       redirect_to root_path
     end
   end
 
   def not_match_userid_current_userid #万が一current_user.idとUser.idが一致しない場合の対策
     unless @user.id == current_user.id
+      flash[:alert] = "error:#{action_name}予期しないエラーが発生しました"
       redirect_to root_path
     end
   end
