@@ -39,6 +39,7 @@ class HomesController < ApplicationController
         not_match_reservationuserid_currentuserid
     end
     rescue
+      flash[:alert] = "予期しないエラーが発生しました。ブラウザの戻るボタンを押して入力内容を戻せます"
       redirect_back(fallback_location: root_path)
     end
 

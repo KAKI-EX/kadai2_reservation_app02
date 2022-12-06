@@ -60,10 +60,10 @@
 
     <div class = "messages">
       <div class = "system_message">
-      <% if notice.nil? || alert.nil? %>
+      <% if [:notice].blank? || [:alert].blank? %>
       <% else %>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <p class="notice"><%= flash[:notice] %></p>
+        <p class="alert"><%= flash[:alert] %></p>
       <% end %>
       <% if flash[:error].present? %>
         <ul class="errors">
