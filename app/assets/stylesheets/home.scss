@@ -242,3 +242,86 @@ a:active{
   background-color: #4a90e2 !important;
   color: white;
 }
+
+// ---------------------------------------------------
+// 以下 homes/confirmation.html.search.erbの記述
+// ---------------------------------------------------
+
+
+.reserve_confirmation{
+  width: fit-content;
+  margin-left: 30%;
+  padding: 20px;
+
+}
+
+.confirm_information_area{
+  margin:50px;
+  border: 1px solid #e2e2e2;
+  width: fit-content;
+  padding: 20px;
+}
+
+.confirmation_detail{
+  border-bottom: 1px solid #eaedef;
+  font-size: 30px;
+  padding: 15px;
+}
+.confirmation_room_fee{
+  font-size: 22px;
+  margin: 18px;
+}
+
+.confirmation_check_in,
+.confirmation_check_out,
+.confirmation_total_fee{
+  margin: 18px;
+}
+
+#reservation_check_in,
+#reservation_check_out,
+#reservation_total_fee{
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+}
+
+.confirmation_people_count,
+.confirmation_stay_count{
+  margin-left:18px;
+}
+
+.confirmation_people_count{
+  border-bottom: 1px solid #eaedef;
+  line-height: 50px;
+}
+
+.confirmation_button{
+  width:100%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.confirmation_button2 button{
+  width:100%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #495057;;
+  background-color: #495057 !important;
+  color: white;
+}
+
+.confirmation_hidden_field{
+  margin: 18px;
+}
+
+.confirmation_button2 a{
+  text-decoration: none;
+}

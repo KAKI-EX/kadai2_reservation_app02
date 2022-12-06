@@ -1,25 +1,52 @@
-<div class = "reserve_confimation">
-    <tr>
-      <td><%= @reservation.room_fee %></td>
-      <td><%= @reservation.check_in.strftime('%Y年%-m月%-d日') %></td>
-      <td><%= @reservation.check_out.strftime('%Y年%-m月%-d日') %></td>
-      <td><%= @reservation.stay_count %></td>
-      <td><%= @reservation.people_count %></td>
-      <td><%= @total_fee %></td>
-      <td><%= @stay_count %></td>
-    </tr>
+<div class = "reserve_confirmation">
+  <div class = "confirm_information_area">
+    <%= form_with model:@reservation, method: :post, url: homes_path, local: true  do |f| %>
+      <div class = "confirmation_detail">
+        <p>予約内容確認</p>
+      </div>
+      <div class = "confirmation_room_fee">
+        <%= "￥#{@reservation.room_fee} / 日" %>
+      </div>
 
-  <%= link_to "編集画面へ戻る",new_homes_path(@reservation.post_id) %>
+      <div class = "confirmation_check_in">
+        <p><%= f.label :check_in,"チェックイン日"%></p>
+        <%= f.text_field :check_in, disabled:true %>
+      </div>
 
-  <%= form_with model:@reservation, method: :post, url: homes_path, local: true  do |f| %>
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :post_id %>
-    <%= f.hidden_field :check_in %>
-    <%= f.hidden_field :check_out %>
-    <%= f.hidden_field :stay_count, value: @stay_count %>
-    <%= f.hidden_field :people_count %>
-    <%= f.hidden_field :room_fee %>
-    <%= f.hidden_field :total_fee, value: @total_fee %>
-    <%= f.submit '保存する' %>
-  <% end %>
+      <div class = "confirmation_check_out">
+        <p><%= f.label :check_out,"チェックアウト日" %></p>
+        <%= f.text_field :check_out, disabled:true %>
+      </div>
+
+      <div class = "confirmation_stay_count">
+        <p><%= "ご宿泊日数 : #{@stay_count}泊#{@stay_count +1}日" %></p>
+      </div>
+
+      <div class = "confirmation_people_count">
+        <p><%= "ご宿泊人数 : #{@reservation.people_count} 名"%></p>
+      </div>
+
+      <div class = "confirmation_total_fee">
+        <p><%= f.label :total_fee,"合計金額" %></p>
+        <%= f.text_field :total_fee,value: @total_fee,disabled:true %>
+        <p>上記内容でよろしければ「予約を確定」を押してください。</p>
+      </div>
+      <div class = "confirmation_hidden_field">
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :post_id %>
+        <%= f.hidden_field :check_in %>
+        <%= f.hidden_field :check_out %>
+        <%= f.hidden_field :stay_count, value: @stay_count %>
+        <%= f.hidden_field :people_count %>
+        <%= f.hidden_field :room_fee %>
+        <%= f.hidden_field :total_fee, value: @total_fee %>
+          <div class= "confirmation_button1">
+            <%= f.submit '予約を確定', class: "confirmation_button" %>
+          </div>
+          <% end %>
+          <div class = "confirmation_button2">
+            <button><%= link_to "編集画面へ戻る",new_homes_path(@reservation.post_id) %></button>
+          </div>
+      </div>
+  </div>
 </div>
