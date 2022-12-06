@@ -97,99 +97,6 @@
     font-size: 20px;
     width: max-content;
   }
-/*
-hamburger(ハンバーガーアイコン)
-=================================== */
-.hamburger {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 300;
-}
-
-.hamburger__line {
-  position: absolute;
-  width: 50px;
-  height: 3px;
-  right: 0;
-  background-color: #000;
-  transition: all 0.5s;
-}
-
-.hamburger__line--1 {
-  top: 1px;
-}
-
-.hamburger__line--2 {
-  top: 18px;
-}
-
-.hamburger__line--3 {
-  top: 36px;
-}
-
-/*ハンバーガーがクリックされたら*/
-.open .hamburger__line--1 {
-  transform: rotate(-45deg);
-  top: 11px;
-}
-
-.open .hamburger__line--2 {
-  opacity: 0;
-}
-
-.open .hamburger__line--3 {
-  transform: rotate(45deg);
-  top: 11px;
-}
-
-/*
-sp-nav(ナビ)
-=================================== */
-.sp-nav {
-  position: fixed;
-  right: -100%; /*ハンバーガーがクリックされる前はWindow右側に隠す*/
-  top: 0;
-  width: 18%; /* 出てくるスライドメニューの幅 */
-  height: 100vh;
-  background-color: #f4f0e6;
-  transition: all 0.5s;
-  z-index: 200;
-  overflow-y: auto; /* メニューが多くなったらスクロールできるように */
-}
-
-/*ハンバーガーがクリックされたら右からスライド*/
-.open .sp-nav {
-  right: 0;
-}
-
-
-/*
-black-bg(ハンバーガーメニュー解除用bg)
-=================================== */
-.black-bg {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 5;
-  background-color: #000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s;
-  cursor: pointer;
-  z-index: 100;
-}
-
-/*ハンバーガーメニューが開いたら表示*/
-.open .black-bg {
-  opacity: 0.3;
-  visibility: visible;
-}
 
 .background_color_footer {
   background-color:#f4f0e6;
@@ -210,8 +117,6 @@ black-bg(ハンバーガーメニュー解除用bg)
   text-align: center;
   justify-content: center;
   margin-left: 30%;
-
-
 }
 
 .messages li{
@@ -219,3 +124,97 @@ black-bg(ハンバーガーメニュー解除用bg)
   background-color: red;
   color: white;
 }
+
+/*　ハンバーガーメニュー記述 ここから*/
+
+.menu-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    background-color: #f4f0e6;
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    background-color: black;
+    position: absolute;
+}
+.menu-btn span:before {
+    bottom: 8px;
+}
+.menu-btn span:after {
+    top: 8px;
+}
+
+#menu-btn-check:checked ~ .menu-btn span {
+    background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
+}
+#menu-btn-check:checked ~ .menu-btn span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+}
+#menu-btn-check:checked ~ .menu-btn span::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+#menu-btn-check {
+    display: none;
+}
+
+.menu-content ul {
+    padding: 70px 10px 0;
+}
+.menu-content ul li {
+    border-bottom: solid 1px #ffffff;
+    list-style: none;
+}
+.menu-content ul li a {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    box-sizing: border-box;
+    color:#ffffff;
+    text-decoration: none;
+    padding: 9px 15px 10px 0;
+    position: relative;
+}
+.menu-content ul li a::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 11px;
+    top: 16px;
+}
+
+.menu-content {
+    width: 15%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -100%;/*leftの値を変更してメニューを画面外へ*/
+    z-index: 80;
+    background-color: #cac8c8;
+    transition: all 0.5s;/*アニメーション設定*/
+}
+
+#menu-btn-check:checked ~ .menu-content {
+    right: 0;/*メニューを画面内へ*/
+}
+
+/*　ハンバーガーメニュー記述 ここまで*/

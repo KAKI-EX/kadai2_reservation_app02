@@ -37,31 +37,27 @@
           <% end %>
       </div>
 
-      <div id="nav-wrapper" class="nav-wrapper">
-        <div class="hamburger" id="js-hamburger">
-          <span class="hamburger__line hamburger__line--1"></span>
-          <span class="hamburger__line hamburger__line--2"></span>
-          <span class="hamburger__line hamburger__line--3"></span>
-        </div>
-        <nav class="sp-nav">
+    <div class="hamburger-menu">
+        <input type="checkbox" id="menu-btn-check">
+        <label for="menu-btn-check" class="menu-btn"><span></span></label>
+            <!--ここからメニュー-->
+        <div class="menu-content">
           <% if user_signed_in? %>
+            <ul class = "links">
+              <li><%= link_to "トップ　", root_path, class:"link" %></li>
+              <li><%= link_to "お部屋の貸し出し　", posts_path, class:"link" %>
+              <li><%= link_to "ログアウト　", destroy_user_session_path, method: :delete, class:"link" %>
+              <li><%= link_to "予約一覧　",home_path(current_user), class:"link" %>
+            </ul>
+          <% else %>
               <ul class = "links">
-                <li><%= link_to "トップ", root_path, class:"link" %></li>
-                <li><%= link_to "お部屋の貸し出し", posts_path, class:"link" %>
-                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link" %>
-                <li><%= link_to "予約一覧",home_path(current_user), class:"link" %>
-              </ul>
-            <% else %>
-              <ul class = "links">
-                <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
-                <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+                <li><%= link_to "新規会員登録　", new_user_registration_path, class:"link" %></li>
+                <li><%= link_to "ログイン　", new_user_session_path, class:"link" %></li>
               </ul>
           <% end %>
-        </nav>
-        <div class="black-bg" id="js-black-bg">
-        </div>
-      </div>
+        <!--ここまでメニュー-->
     </div>
+
     <div class = "messages">
       <div class = "system_message">
       <% if notice.nil? || alert.nil? %>
