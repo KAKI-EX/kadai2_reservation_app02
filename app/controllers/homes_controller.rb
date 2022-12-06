@@ -21,22 +21,26 @@ class HomesController < ApplicationController
     @q = Post.ransack(params[:q])
   end
 
-  def new                                         #割り当て：部屋の予約ページ
+  def new #割り当て：部屋の予約ページ
     @post = Post.find(params[:id])
     @reservation = Reservation.new
     @user = User.find(@post.user_id)
   end
 
-  def confirmation                                #割り当て:予約確認画面
-    @reservation = Reservation.new(params_permit)
-    if @reservation.invalid? || @reservation.check_in > @reservation.check_out
-      redirect_to new_homes_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
-    else
-      @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-      @total_fee = @reservation.room_fee * @reservation.people_count* @stay_count
+  def confirmation #割り当て:予約確認画面
+    begin #予約確認画面でリロードするとエラーが発生するためエラー処理を実装
+      @reservation = Reservation.new(params_permit)
+      if @reservation.invalid? || @reservation.check_in > @reservation.check_out
+        redirect_to new_homes_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
+      else
+        @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+        @total_fee = @reservation.room_fee * @reservation.people_count* @stay_count
+      end
+        not_match_reservationuserid_currentuserid
     end
-      not_match_reservationuserid_currentuserid
-  end
+    rescue
+      redirect_back(fallback_location: root_path)
+    end
 
   def create
     @reservation = Reservation.new(params_permit)
