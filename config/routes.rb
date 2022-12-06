@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       patch '/:id' ,to: 'homes#update', as: 'update'                  #updateアクションがエラー。明示的に変更。
 
 
+
     end
   end
 end

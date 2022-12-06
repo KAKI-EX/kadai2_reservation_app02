@@ -35,7 +35,7 @@ class HomesController < ApplicationController
       @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
       @total_fee = @reservation.room_fee * @reservation.people_count* @stay_count
     end
-    not_match_reservationuserid_currentuserid
+      not_match_reservationuserid_currentuserid
   end
 
   def create
