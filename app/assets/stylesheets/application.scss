@@ -49,8 +49,6 @@
     width: 15%;
   }
 
-
-
   .user_profile{
     position: absolute;
     right: 8%;
@@ -121,9 +119,15 @@
   margin-left: 30%;
 }
 
-.messages li{
+.error,.alert{
   display: block;
   background-color: red;
+  color: white;
+}
+
+.notice{
+  display: block;
+  background-color: #17e05d;
   color: white;
 }
 

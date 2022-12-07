@@ -57,13 +57,13 @@
           <% end %>
         <!--ここまでメニュー-->
     </div>
-
     <div class = "messages">
-      <div class = "system_message">
       <% if [:notice].blank? || [:alert].blank? %>
       <% else %>
-        <p class="notice"><%= flash[:notice] %></p>
-        <p class="alert"><%= flash[:alert] %></p>
+        <ul>
+        <li class="notice"><%= flash[:notice] %></li>
+        <li class="alert"><%= flash[:alert] %></li>
+        </ul>
       <% end %>
       <% if flash[:error].present? %>
         <ul class="errors">
@@ -72,7 +72,6 @@
         </ul>
       <% end %>
       <% end %>
-      </div>
     </div>
   </header>
 
