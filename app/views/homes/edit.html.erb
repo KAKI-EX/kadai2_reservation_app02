@@ -32,9 +32,10 @@
           <%= f.hidden_field :room_fee %>
           <%= f.hidden_field :total_fee %>
         </table>
-      <button><%= link_to "履歴の削除",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" } %></button>
+        <% end %>
+      <%= button_to "履歴の削除",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" }, class:"edit_confirmation_delete" %>
     </div>
-      <% end %>
+
       <% else %>
     <div class = "edit_confirmation_information_area">
         <%= form_with model:@reservation, url: {controller: 'homes', action: 'edit_confirmation'}, local: true do |f| %>
@@ -46,10 +47,8 @@
               <%= f.hidden_field :total_fee %>
           </table>
           <%= f.submit '予約を変更する', class: "edit_confirmation_button" %>
-          <button><%= link_to "予約の削除",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" } %></button>
-      <% end %>
-    </div>
+              <% end %>
+          <%= button_to "予約をキャンセルする",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" }, class:"edit_confirmation_delete" %>
+      </div>
   <% end %>
-
-
 </div>
