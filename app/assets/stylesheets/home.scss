@@ -314,7 +314,7 @@ a:active{
   margin-top:10px;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  border-color: #495057;;
+  border-color: #495057;
   background-color: #495057 !important;
   color: white;
 }
@@ -325,4 +325,62 @@ a:active{
 
 .confirmation_button2 a{
   text-decoration: none;
+}
+
+
+// ---------------------------------------------------
+// 以下 homes/confirmed.html.search.erbの記述
+// ---------------------------------------------------
+
+.confirmed_container{
+  background-color: #e6f0f9;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 15%;
+  text-align: center;
+}
+
+.confirmed_information_area{
+  width: 60%;
+  font-size: 20px;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.confirmed_information_area table{
+  width: 100%;
+}
+.confirmed_information_area thead{
+  width: 100%;
+  display: inline-block;
+  border: solid 1px #82bcef;
+}
+
+.confirmed_information_area th,
+.confirmed_information_area td{
+  text-align: left;
+  width: 40%;
+  line-height: 50px;
+
+}
+
+.confirmed_information_area th{
+  padding-right: 100px;
+  padding-left:20px
+}
+
+.confirmed_information_area td{
+  width: 100%;
+
+
+}
+
+.confirmed_container h3{
+  text-align: center;
+}
+
+.confirmed_container a{
 }

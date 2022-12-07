@@ -1,23 +1,16 @@
-<p>confimed.html</p>
+<div class = "confirmed_container">
+      <h3>ご予約情報</h3>
+  <div class= "confirmed_information_area">
+    <table>
+      <thead>
+        <tr><th>ご予約管理番号</th><td><%= @reservation.id %></td><tr>
+        <tr><th>ホテル名</th><td><%= @post.room_name %></td><tr>
+        <tr><th>チェックイン予定日</th><td><%= @reservation.check_in.strftime('%Y年%-m月%-d日') %></td><tr>
+        <tr><th>チェックアウト予定日</th><td><%= @reservation.check_out.strftime('%Y年%-m月%-d日') %></td><tr>
+        <tr><th>合計金額</th><td><%= @reservation.total_fee %></td><tr>
+      </thead>
+    </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>ホテル名</th>
-      <th>チェックイン予定日</th>
-      <th>チェックアウト予定日</th>
-      <th>合計金額</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @post.room_name %></td>
-      <td><%= @reservation.check_in %></td>
-      <td><%= @reservation.check_out %></td>
-      <td><%= @reservation.total_fee %></td>
-      <td><%= @reservation.user_id %></td>
-    </tr>
-  </tbody>
-</table>
-
-<%= link_to "TOPへ戻る",homes_path %>
+  </div>
+      <%= link_to "TOPへ戻る",homes_path %>
+</div>
