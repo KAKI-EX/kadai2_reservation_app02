@@ -383,3 +383,50 @@ a:active{
 .confirmed_container a{
 }
 
+// ---------------------------------------------------
+// 以下 homes/show.html.erbの記述
+// ---------------------------------------------------
+
+
+.show_container{
+  padding: 30px 50px 30px 50px;
+}
+
+.reservation_list h2{
+  margin-bottom: 35px;
+  text-align: left;
+}
+
+.reservation_list{
+  text-align: center;
+}
+
+.homes_show_img_th{
+  width: 20%;
+}
+
+.homes_show_img{
+  width: 100%;
+}
+
+.homes_show_img img{
+  border-radius: 10px;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.reservation_list th{
+  line-height: 70px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+}
+
+.reservation_list td{
+  padding: 10px;
+}
+
+.reservation_list a{
+  color:inherit;
+  text-decoration: none;
+}

@@ -43,7 +43,6 @@ class HomesController < ApplicationController
       redirect_back(fallback_location: root_path)
   end
 
-
   def create
     @reservation = Reservation.new(params_permit)
     not_match_reservationuserid_currentuserid
@@ -72,10 +71,6 @@ class HomesController < ApplicationController
     not_match_reservationuserid_currentuserid
   end
 
-
-
-
-
   def edit_confirmation
     begin #編集確認画面でリロードするとエラーが発生するためエラー処理を実装
       @reservation = Reservation.find(params[:id])
@@ -92,12 +87,6 @@ class HomesController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
-
-
-
-
-
 
   def update
     @reservation = Reservation.find(params[:id])
