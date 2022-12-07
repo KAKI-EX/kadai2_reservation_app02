@@ -407,13 +407,14 @@ a:active{
 
 .homes_show_img{
   width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .homes_show_img img{
   border-radius: 10px;
   width: 100%;
-  height: 500px;
-  object-fit: cover;
+  height: 100%;
 }
 
 .reservation_list th{
@@ -429,4 +430,128 @@ a:active{
 .reservation_list a{
   color:inherit;
   text-decoration: none;
+}
+
+// ---------------------------------------------------
+// 以下 homes/edit.html.erbの記述
+// ---------------------------------------------------
+
+
+.edit_confirmation_container{
+  display: flex;
+}
+
+.edit_information_area{
+  display: flex;
+  display: inline-block;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  margin-right: 5%;
+  margin-top: 5%;
+  width: 40%;
+}
+
+.edit_room_description{
+  display: flex;
+}
+
+.edit_room_image{
+  width: 100%;
+}
+
+.edit_room_image img{
+  border-radius: 10px;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.edit_user_avatar img{
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  min-width: 75px;
+  min-height: 75px;
+  opacity: 1;
+  object-fit: cover;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.edit_room_info{
+  margin: 30px;
+}
+
+.edit_room_name{
+  margin-bottom: 10px;
+}
+
+.edit_room_introduce{
+  font-size: 18px;
+  line-height: 30px;
+  padding: 30px 10px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+  word-break: break-all;
+}
+
+
+.edit_confirmation_information_area{
+  margin-top: 5%;
+  width: 40%;
+}
+
+.edit_confirmation_information_area table{
+  width: 100%;
+}
+
+.edit_confirmation_information_area tr{
+  display:block;
+  margin: 30px;
+}
+
+.edit_confirmation_information_area th,
+.edit_confirmation_information_area td{
+  width:100%;
+  display:block;
+}
+
+.edit_confirmation_information_area th{
+  text-align: left;
+}
+
+.edit_confirmation_information_area #reservation_people_count{
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+}
+
+.edit_confirmation_information_area button,
+input.edit_confirmation_button{
+  margin: 30px;
+  width: 91%;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  border-color: #385370;
+}
+
+input.edit_confirmation_button{
+  height: 40px;
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.edit_confirmation_information_area button a{
+  color:inherit;
+  text-decoration: none;
+}
+
+.edit_confirmation_information_area p{
+  padding: 30px;
+  font-size: 20px;
 }

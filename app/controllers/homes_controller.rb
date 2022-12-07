@@ -68,6 +68,8 @@ class HomesController < ApplicationController
 
   def edit                                         #割り当て:ユーザー予約変更
     @reservation = Reservation.find(params[:id])
+    @post = Post.find(@reservation.post_id)
+    @user = User.find(@post.user_id)
     not_match_reservationuserid_currentuserid
   end
 
@@ -104,7 +106,7 @@ class HomesController < ApplicationController
       @reservation = Reservation.find(params[:id])
       not_match_reservationuserid_currentuserid
       @reservation.destroy
-      flash[:notice] = "予約を削除しました"
+      flash[:notice] = "削除しました"
       redirect_to home_path(current_user.id)
     end
   end
