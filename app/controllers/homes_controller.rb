@@ -41,7 +41,8 @@ class HomesController < ApplicationController
     rescue
       flash[:alert] = "予期しないエラーが発生しました。ブラウザの戻るボタンを押して入力内容を戻せます"
       redirect_back(fallback_location: root_path)
-    end
+  end
+
 
   def create
     @reservation = Reservation.new(params_permit)
@@ -71,18 +72,32 @@ class HomesController < ApplicationController
     not_match_reservationuserid_currentuserid
   end
 
-  def edit_confirmation
-    @reservation = Reservation.find(params[:id])
-    not_match_reservationuserid_currentuserid
 
-    @reservation.attributes = params_permit
-    if @reservation.invalid? || @reservation.check_in > @reservation.check_out
-      redirect_to edit_home_path(@reservation.id),flash: { error: @reservation.errors.full_messages }
-    else
-      @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
-      @total_fee = @reservation.room_fee * @reservation.people_count * @stay_count
+
+
+
+  def edit_confirmation
+    begin #編集確認画面でリロードするとエラーが発生するためエラー処理を実装
+      @reservation = Reservation.find(params[:id])
+      not_match_reservationuserid_currentuserid
+      @reservation.attributes = params_permit
+      if @reservation.invalid? || @reservation.check_in > @reservation.check_out
+        redirect_to edit_home_path(@reservation.id),flash: { error: @reservation.errors.full_messages }
+      else
+        @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
+        @total_fee = @reservation.room_fee * @reservation.people_count * @stay_count
+      end
+    rescue
+      flash[:alert] = "予期しないエラーが発生しました。予約確認画面で再読み込みされた可能性があります。"
+      redirect_back(fallback_location: root_path)
     end
   end
+
+
+
+
+
+
 
   def update
     @reservation = Reservation.find(params[:id])
