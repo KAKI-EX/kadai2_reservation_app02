@@ -5,3 +5,58 @@
 // ---------------------------------------------------
 // 以下 posts/index.htmlの記述
 // ---------------------------------------------------
+
+
+.post_index_container{
+  padding: 50px;
+}
+
+.post_index_container h1{
+  padding-bottom: 20px;
+}
+
+input.rent_room_button{
+  width:15%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+
+.post_room_information{
+  padding: 30px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.post_room_information img{
+  border-radius: 10px;
+  width: 80%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.post_room_information th{
+  line-height: 70px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+}
+
+.post_room_information td{
+  padding: 5px;
+  text-align: center;
+  word-break: break-all;
+}
+
+.post_room_information a{
+  color:inherit;
+  text-decoration: none;
+}
+
+td.post_room_info{
+  width: 10%;
+}
