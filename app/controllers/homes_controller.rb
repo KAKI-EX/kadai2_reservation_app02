@@ -30,7 +30,7 @@ class HomesController < ApplicationController
   def confirmation #割り当て:予約確認画面
     begin #予約確認画面でリロードするとエラーが発生するためエラー処理を実装
       @reservation = Reservation.new(params_permit)
-      if @reservation.invalid? || @reservation.check_in > @reservation.check_out
+      if @reservation.invalid?
         redirect_to new_homes_path(@reservation.post_id),flash: { error: @reservation.errors.full_messages }
       else
         @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
@@ -78,7 +78,7 @@ class HomesController < ApplicationController
       @reservation = Reservation.find(params[:id])
       not_match_reservationuserid_currentuserid
       @reservation.attributes = params_permit
-      if @reservation.invalid? || @reservation.check_in > @reservation.check_out
+      if @reservation.invalid?
         redirect_to edit_home_path(@reservation.id),flash: { error: @reservation.errors.full_messages }
       else
         @stay_count = ((@reservation.check_out - @reservation.check_in).to_i/1.days).floor
