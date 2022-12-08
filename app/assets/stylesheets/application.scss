@@ -77,8 +77,18 @@ margin-left: 10px;
   place-items: center;
 }
 
+.alert,
+.error{
+  text-align: center;
+  background-color: #fdd2d2;
+}
 
-/*　ハンバーガーメニュー記述 ここから*/
+.notice{
+  text-align: center;
+  background-color: #d8f7c8;
+}
+
+/*ハンバーガーメニュー記述 ここから*/
 
 .menu-btn {
     position: fixed;

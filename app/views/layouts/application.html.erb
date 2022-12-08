@@ -67,17 +67,18 @@
 <body>
   <div class = "messages">
     <ul>
-      <% if flash[:notice].present? || flash[:alert].present? %>
+      <% if flash[:notice].present? %>
         <li class="notice"><%= flash[:notice] %></li>
+      <% elsif flash[:alert].present? %>
         <li class="alert"><%= flash[:alert] %></li>
       <% elsif flash[:error].present? %>
         <% flash[:error].each do |e| %>
           <li><%= e %></li>
         <% end %>
       <% end %>
+        <%= render "shared/error", obj: @post %>
     </ul>
   </div>
-  <%#= render "shared/error", obj: @user %>
     <%= yield %>
 </body>
 

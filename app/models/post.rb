@@ -10,5 +10,4 @@ class Post < ApplicationRecord
   validates :room_address_postcode, presence: true, numericality: true, length: {in: 7..7 }
   validates :room_address_prefecture, presence: true
   validates :room_address_town_village, presence: true
-  validates :room_photo, presence: true
 end
