@@ -45,7 +45,7 @@
           </div>
           <% end %>
           <div class = "confirmation_button2">
-            <button><%= link_to "編集画面へ戻る",new_homes_path(@reservation.post_id) %></button>
+            <button><%= link_to "編集画面へ戻る",new_homes_path(@reservation.post_id),method: :get %></button>
           </div>
       </div>
   </div>
