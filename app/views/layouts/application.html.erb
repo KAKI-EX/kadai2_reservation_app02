@@ -66,20 +66,16 @@
 
 <body>
   <div class = "messages">
-    <% if [:notice].blank? || [:alert].blank? %>
-    <% else %>
-      <ul>
+    <ul>
+      <% if flash[:notice].present? || flash[:alert].present? %>
         <li class="notice"><%= flash[:notice] %></li>
         <li class="alert"><%= flash[:alert] %></li>
-      </ul>
-    <% end %>
-      <ul class="errors">
-    <% if flash[:error].present? %>
-      <% flash[:error].each do |e| %>
-        <li><%= e %></li>
-    <% end %>
+      <% elsif flash[:error].present? %>
+        <% flash[:error].each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      <% end %>
     </ul>
-    <% end %>
   </div>
 
     <%= yield %>
