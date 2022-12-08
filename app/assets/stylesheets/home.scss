@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
+// ---------------------------------------------------
+// 以下 homes/index.html.search.erbの記述
+// ---------------------------------------------------
 
 .container{
   width: 100%;
@@ -34,7 +37,7 @@
   font-size: 20px;
 }
 
-.search_box{
+input#q_room_address_prefecture_or_room_address_town_village_cont.search_box{
   width: 100%;
   height: 35px;
 }
