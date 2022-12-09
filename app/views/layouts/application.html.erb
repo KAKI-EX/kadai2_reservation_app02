@@ -74,7 +74,7 @@
         <li class="alert"><%= flash[:alert] %></li>
       <% elsif flash[:error].present? %>
         <% flash[:error].each do |e| %>
-          <li><%= e %></li>
+          <li class="error"><%= e %></li>
         <% end %>
       <% end %>
         <%= render "shared/error", obj: @post %>
