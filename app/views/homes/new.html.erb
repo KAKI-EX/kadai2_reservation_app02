@@ -25,42 +25,42 @@
     </div>
 
     <% if user_signed_in? %> <%# ログインしていない場合は読み込みしない%>
-    <div class = "new_reservation_area">
-      <%= form_with model:@reservation,url: confirmation_homes_path(@reservation), local: true do |f| %>
-
-      <div class = "new_reservation_input_block">
-        <table>
-          <div class = "new_reservation_price">
-              <p><%= "￥#{@post.room_price} / 日" %></p>
-          </div>
-          <div class= "new_reservation_check_in">
-              <p><%= f.label :check_in,"チェックイン日" %></p>
-              <%= f.date_field :check_in %>
-          </div>
-          <div class = "new_reservation_check_out">
-              <p><%= f.label :check_out, "チェックアウト日"%></p>
-              <%= f.date_field :check_out %>
-          </div>
-          <div class = "new_people_count">
-              <p><%= f.label :people_count, "ご宿泊人数"%></p>
-              <%= f.number_field :people_count, in: 1..10 %>
-          </div>
-        </table>
-          <div class = "new_reservation_button">
-            <ul>
-            <%= f.submit "予約を確認する"%>
-            <p><%= link_to "トップページに戻る", homes_path %></p>
-            </ul>
-          </div>
+      <div class = "new_reservation_area">
+        <%= form_with model:@reservation,url: confirmation_homes_path(@reservation), local: true do |f| %>
+          <div class = "new_reservation_input_block">
+            <table>
+              <div class = "new_reservation_price">
+                  <p><%= "￥#{@post.room_price} / 日" %></p>
+              </div>
+              <div class= "new_reservation_check_in">
+                  <p><%= f.label :check_in,"チェックイン日" %></p>
+                  <%= f.date_field :check_in %>
+              </div>
+              <div class = "new_reservation_check_out">
+                  <p><%= f.label :check_out, "チェックアウト日"%></p>
+                  <%= f.date_field :check_out %>
+              </div>
+              <div class = "new_people_count">
+                  <p><%= f.label :people_count, "ご宿泊人数"%></p>
+                  <%= f.number_field :people_count, in: 1..10 %>
+              </div>
+            </table>
+            <div class = "new_reservation_button">
+              <ul>
+              <%= f.submit "予約を確認する"%>
+              <p><%= link_to "トップページに戻る", homes_path %></p>
+              </ul>
+            </div>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :post_id, value: @post.id %>
             <%= f.hidden_field :room_fee, value: @post.room_price %>
-          <% end %>
-          <% else %>  <%# ログインしていない場合の表示%>
-            <li><%= link_to "ログインする", new_user_session_path %></li>
-            <li><%= link_to "新規会員登録", new_user_registration_path %></li>
-          <% end %>
+            <% end %>
+            <% else %>  <%# ログインしていない場合の表示%>
+            <div class = "new_reservation_before_login">
+            <li><%= link_to "予約する場合はログインしてください。", new_user_session_path %></li>
+            <li><%= link_to "アカウントをお持ちでない方は会員登録が必要です。", new_user_registration_path %></li>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    <% end %>
 </div>

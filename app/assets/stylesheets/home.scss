@@ -247,6 +247,15 @@ a:active{
   color: white;
 }
 
+.new_reservation_before_login li{
+  list-style: none;
+  color: blue;
+  margin: 20px;
+}
+
+.new_reservation_before_login a{
+}
+
 // ---------------------------------------------------
 // 以下 homes/confirmation.html.erbの記述
 // ---------------------------------------------------
