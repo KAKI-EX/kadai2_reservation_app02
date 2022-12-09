@@ -44,12 +44,9 @@
           <td><%= f.file_field :room_photo %></td>
         </tr>
       </table>
-
       <%= f.hidden_field :user_id, value: current_user.id %>
-
-        <%= f.submit "登録完了する",class: "post_new_submit_button"%>
-        <%= button_to "トップページに戻る", homes_path, class:"post_new_back_button" %>
-
+      <%= f.submit "登録完了する",class: "post_new_submit_button"%>
     <% end %>
+    <%= button_to "トップページに戻る",posts_path,method: :get, class:"post_new_back_button" %>
   </div>
 </div>

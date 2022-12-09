@@ -1,52 +1,55 @@
-<h3>お部屋情報の編集</h3>
 
-<div><%= link_to "お部屋貸し出し画面TOPへ", posts_path, class: "text-white" %></div>
+<div class = "post_edit_container">
+  <div class = "post_edit_input_field">
+    <h1>ルーム情報登録</h1>
+    <%= form_with model:@post,local: true do |f| %>
+      <table>
+        <tr>
+          <th class = "required"><%= f.label :room_name,"お部屋の名前" %></th>
+          <td><%= f.text_field :room_name %></td>
+        </tr>
 
- <%= render "shared/error", obj: @post %>
+        <tr>
+          <th class = "required"><%= f.label :room_price, "お部屋の価格"%></th>
+          <td><%= f.text_field :room_price %></td>
+        </tr>
 
-<%= form_with model:@post,local: true  do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :room_name,"お部屋の名前" %></th>
-      <td><%= f.text_field :room_name %></td>
-    </tr>
-  </table>
-    <tr>
-      <th><%= f.label :room_price, "お部屋の価格"%></th>
-      <td><%= f.text_field :room_price %></td>
-    </tr>
+        <tr>
+          <th class = "required"><%= f.label :room_info, "お部屋の詳細"%></th>
+          <td><%= f.text_area :room_info %></td>
+        </tr>
 
-    <tr>
-      <th><%= f.label :room_info, "お部屋の詳細"%></th>
-      <td><%= f.text_area :room_info %></td>
-    </tr>
+        <tr>
+          <th class = "required"><%= f.label :room_address_postcode, "郵便番号"%></th>
+          <td><%= f.text_field :room_address_postcode %></td>
+        </tr>
 
-    <tr>
-      <th><%= f.label :room_address_postcode, "郵便番号"%></th>
-      <td><%= f.text_field :room_address_postcode %></td>
-    </tr>
+        <tr>
+          <th class = "required"><%= f.label :room_address_prefecture, "都道府県"%></th>
+          <td><%= f.text_field :room_address_prefecture %></td>
+        </tr>
 
-    <tr>
-      <th><%= f.label :room_address_prefecture, "都道府県"%></th>
-      <td><%= f.text_field :room_address_prefecture %></td>
-    </tr>
+        <tr>
+          <th class = "required"><%= f.label :room_address_town_village, "市区町村"%></th>
+          <td><%= f.text_field :room_address_town_village %></td>
+        </tr>
 
-    <tr>
-      <th><%= f.label :room_address_town_village, "市区町村"%></th>
-      <td><%= f.text_field :room_address_town_village %></td>
-    </tr>
+        <tr>
+          <th><%= f.label :room_address_other, "その他住所"%></th>
+          <td><%= f.text_field :room_address_other %></td>
+        </tr>
 
-    <tr>
-      <th><%= f.label :room_address_other, "その他住所"%></th>
-      <td><%= f.text_field :room_address_other %></td>
-    </tr>
+        <tr>
+          <th><%= f.label :room_photo,"お部屋の写真" %></th>
+          <td><%= f.file_field :room_photo %></td>
+        </tr>
+      </table>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "登録完了する",class: "post_edit_submit_button"%>
+    <% end %>
 
-    <tr>
-      <th><%= f.label :room_photo,"お部屋の写真" %></th>
-      <td><%= f.file_field :room_photo %></td>
-    </tr>
-  </table>
+    <%= button_to "トップページに戻る", posts_path,method: :get, class:"post_edit_back_button" %>
 
-  <%= f.submit "編集完了"%>
 
-<% end %>
+  </div>
+</div>
