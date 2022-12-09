@@ -75,6 +75,9 @@
         <% flash[:error].each do |e| %>
           <li><%= e %></li>
         <% end %>
+      <% elsif resource.nil? %>
+      <% else %>
+        <%= render "devise/shared/error_messages", resource: resource %>
       <% end %>
         <%= render "shared/error", obj: @post %>
     </ul>

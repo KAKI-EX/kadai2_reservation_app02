@@ -1,0 +1,45 @@
+.devise_new_container{
+  text-align: center;
+  padding: 150px 0px;
+}
+
+.devise_outer_line{
+  width: 80%;
+  margin: 0 auto;
+  max-width: 350px;
+  border-radius: 8px;
+  border: 1px #ddd solid;
+  padding: 20px 10px;
+}
+
+.devise_new_sign_up{
+  width: 80%;
+  margin: 0 auto;
+  max-width: 350px;
+  border-radius: 8px;
+  border: 1px #ddd solid;
+  padding: 20px 20px;
+}
+
+
+.devise_email,
+.devise_password{
+  text-align: left;
+}
+
+#user_email,
+#user_password{
+  width: 100%;
+  line-height: 30px;
+  margin: 5px 0px;
+  font-size: 18px;
+}
+
+.devise_button input{
+  width: 50%;
+  height: 30px;
+}
+
+.devise_button{
+  margin: 20px 0px;
+}

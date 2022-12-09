@@ -3,42 +3,38 @@
   <div class = "devise_outer_line">
     <div class = "devise_new_sign_up">
       <h2>アカウントの作成</h2>
-
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
 
+      <div class="devise_name">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
 
-        <div class="devise_name">
-          <%= f.label :name %><br />
-          <%= f.text_field :name, autofocus: true %>
-        </div>
+      <div class="devise_email">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
 
-        <div class="devise_email">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autocomplete: "email" %>
-        </div>
+      <div class="devise_password">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上が必要です)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
 
-        <div class="devise_password">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上が必要です)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
+      <div class="devise_confirmation_password">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
 
-        <div class="devise_confirmation_password">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-
-        <div class="devise_button">
-          <%= f.submit "作成" %>
-          <% end %>
-        </div>
-        <div class="devise_button2">
-          <p class = "devise_p">----------アカウントをお持ちの方はログイン----------</p>
-          <%= button_to 'ログイン', new_user_session_path, method: :get %>
-        </div>
+      <div class="devise_button">
+        <%= f.submit "作成" %>
+        <% end %>
+      </div>
+      <div class="devise_button2">
+        <p class = "devise_p">----------アカウントをお持ちの方はログイン----------</p>
+        <%= button_to 'ログイン', new_user_session_path, method: :get %>
       </div>
     </div>
   </div>
