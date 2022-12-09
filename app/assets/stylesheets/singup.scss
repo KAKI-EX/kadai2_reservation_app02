@@ -6,7 +6,7 @@
 .devise_outer_line{
   width: 80%;
   margin: 0 auto;
-  max-width: 350px;
+  max-width: 400px;
   border-radius: 8px;
   border: 1px #ddd solid;
   padding: 20px 10px;
@@ -15,7 +15,7 @@
 .devise_new_sign_up{
   width: 80%;
   margin: 0 auto;
-  max-width: 350px;
+  max-width: 400px;
   border-radius: 8px;
   border: 1px #ddd solid;
   padding: 20px 20px;
@@ -24,14 +24,18 @@
 .devise_name,
 .devise_email,
 .devise_password,
-.devise_confirmation_password{
+.devise_confirmation_password,
+.devise_input_password
+.devise_user_avatar{
   text-align: left;
+  margin-top: 10px;
 }
 
 #user_name,
 #user_email,
 #user_password,
-#user_password_confirmation{
+#user_password_confirmation,
+#user_current_password{
   width: 100%;
   line-height: 30px;
   margin: 5px 0px;
@@ -51,4 +55,14 @@
 .devise_p{
   margin: 10px 0px;
   font-size: 12px;
+}
+
+.devise_user_avatar{
+  text-align: left;
+  margin:10px 0px;
+
+}
+
+.devise_confirmation_password i{
+  font-size: 10px;
 }

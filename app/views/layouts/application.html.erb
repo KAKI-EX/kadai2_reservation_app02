@@ -41,14 +41,15 @@
         <div class="hamburger-menu">
           <input type="checkbox" id="menu-btn-check">
           <label for="menu-btn-check" class="menu-btn"><span></span></label>
-              <!--ここからメニュー-->
+            <!--ここからメニュー-->
           <div class="menu-content">
             <% if user_signed_in? %>
               <ul class = "links">
                 <li><%= link_to "トップ　", root_path, class:"link" %></li>
                 <li><%= link_to "お部屋の貸し出し　", posts_path, class:"link" %>
-                <li><%= link_to "ログアウト　", destroy_user_session_path, method: :delete, class:"link" %>
+                <li><%= link_to "アカウント設定", edit_user_registration_path, class:"link" %>
                 <li><%= link_to "予約一覧　",home_path(current_user), class:"link" %>
+                <li><%= link_to "ログアウト　", destroy_user_session_path, method: :delete, class:"link" %>
               </ul>
             <% else %>
                 <ul class = "links">
@@ -75,9 +76,6 @@
         <% flash[:error].each do |e| %>
           <li><%= e %></li>
         <% end %>
-      <% elsif resource.nil? %>
-      <% else %>
-        <%= render "devise/shared/error_messages", resource: resource %>
       <% end %>
         <%= render "shared/error", obj: @post %>
     </ul>
