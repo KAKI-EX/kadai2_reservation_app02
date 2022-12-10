@@ -1,0 +1,29 @@
+<div class = "userprofile_edit_container">
+  <div class = "userprofile_edit_input_field">
+    <h1>プロフィール情報編集</h1>
+    <%= form_with model:@userprofile,local: true do |f| %>
+      <table>
+        <tr>
+          <th class = "required"><%= f.label :user_name,"ニックネーム" %></th>
+          <td><%= f.text_field :user_name %></td>
+        </tr>
+
+        <tr>
+          <th class = "required"><%= f.label :self_introduce, "自己紹介文"%></th>
+          <td><%= f.text_field :self_introduce %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :user_avatar,"あなたの写真" %></th>
+          <td><%= f.file_field :user_avatar %></td>
+        </tr>
+
+      </table>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "登録完了する",class: "userprofile_edit_submit_button"%>
+    <% end %>
+
+    <%= button_to "自分のプロフィールに戻る", userprofile_path,method: :get, class:"userprofile_edit_back_button" %>
+
+  </div>
+</div>

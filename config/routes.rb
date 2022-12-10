@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root "homes#index"
   resources :posts
+  resources :userprofiles,except: [:destroy]
+
 
   resources :homes,except: [:new, :update] do
     collection do

@@ -17,6 +17,11 @@
     <div class = "background_color">
       <div class = "header_contents">
         <%= link_to image_tag("logo_transparent.png", class:"logo"),root_path  %>
+
+
+        <li><%= link_to "プロフィール", userprofile_path(current_user), class:"link" %>
+
+
         <!--ransack用の記述-->
         <div class = "search_field">
           <%= search_form_for @q, url: search_result_homes_path do |f| %>
