@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def set_profile
     if user_signed_in? && Userprofile.exists?(user_id: current_user.id)
-      @userprofile = Userprofile.find(current_user.id)
+      @userprofile_header = Userprofile.find(current_user.id)
     end
   end
 

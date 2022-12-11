@@ -1,26 +1,40 @@
 <div class = "userprofile_show_container">
 
-<% if @userprofile.nil?%>
-  <p> あなたのプロフィールが見つかりませんでした。</p>
-  <%= button_to "プロフィール登録", new_userprofile_path, method: :get, class: "userprofile_show_new"%>
-<% elsif user_signed_in? %>
-  <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
-  <div class = userprofile_show_room_information>
-    <table id = "userprofile_show_table">
-      <div class = "userprofile_show_room_image">
-        <tr><th class = "">登録画像</th><td><%= image_tag @userprofile.user_avatar.to_s %></td></tr>
-      </div>
+  <% if @userprofile.nil?%>
+    <p> あなたのプロフィールが見つかりませんでした。</p>
+    <%= button_to "プロフィール登録", new_userprofile_path, method: :get, class: "userprofile_show_new"%>
+  <% elsif @userprofile.user_id != current_user %>
+    <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
+    <div class = userprofile_show_room_information>
+      <table id = "userprofile_show_table">
+        <div class = "userprofile_show_room_image">
+          <tr><th class = "">登録画像</th><td><%= image_tag @userprofile.user_avatar.to_s %></td></tr>
+        </div>
 
-      <tr><th>プロフィール登録日</th><td><%= @userprofile.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
-      <tr><th>ユーザー名</th><td><%= @userprofile.user_name %></td></tr>
-      <tr><th>自己紹介</th><td><%= @userprofile.self_introduce %></td></tr>
-
-    </table>
-    <div class = "userprofile_show_button">
-      <%= button_to "情報修正", edit_userprofile_path, method: :get, class: "userprofile_show_modify"%>
-      <%= button_to "TOPへ", root_path(current_user.id), method: :get, class: "userprofile_show_back" %>
+        <tr><th>プロフィール登録日</th><td><%= @userprofile.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
+        <tr><th>ユーザー名</th><td><%= @userprofile.user_name %></td></tr>
+        <tr><th>自己紹介</th><td><%= @userprofile.self_introduce %></td></tr>
+      </table>
     </div>
-  </div>
+
+  <% elsif user_signed_in? %>
+    <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
+    <div class = userprofile_show_room_information>
+      <table id = "userprofile_show_table">
+        <div class = "userprofile_show_room_image">
+          <tr><th class = "">登録画像</th><td><%= image_tag @userprofile.user_avatar.to_s %></td></tr>
+        </div>
+
+        <tr><th>プロフィール登録日</th><td><%= @userprofile.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
+        <tr><th>ユーザー名</th><td><%= @userprofile.user_name %></td></tr>
+        <tr><th>自己紹介</th><td><%= @userprofile.self_introduce %></td></tr>
+
+      </table>
+      <div class = "userprofile_show_button">
+        <%= button_to "情報修正", edit_userprofile_path, method: :get, class: "userprofile_show_modify"%>
+        <%= button_to "TOPへ", root_path(current_user.id), method: :get, class: "userprofile_show_back" %>
+      </div>
+    </div>
   <% else %>
     <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
       <div class = userprofile_show_room_information>

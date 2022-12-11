@@ -3,7 +3,6 @@ class HomesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :new, :search_result] #未ログインユーザーは案件の閲覧のみ
 
 
-
   def index
     @posts = Post.all
     # ログイン済みの場合、ログインユーザーのidをログに書き込む。
