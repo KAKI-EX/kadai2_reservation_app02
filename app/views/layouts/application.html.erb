@@ -29,24 +29,23 @@
         </div>
 
         <% if user_signed_in? && Userprofile.exists?(user_id: current_user.id) %>
-        <div class = "application_user_profile">
-          <span><%= current_user.name %></span>
-          <%= image_tag(@userprofile_header.user_avatar.to_s, class:"application_user_avatar") %>
-        </div>
+          <div class = "application_user_profile">
+            <span><%= current_user.name %></span>
+            <%= image_tag(@userprofile_header.user_avatar.to_s, class:"application_user_avatar") %>
+          </div>
 
         <% elsif user_signed_in? && @userprofile_header.nil? %>
           <div class = "application_user_profile">
-          <span><%= current_user.name %></span>
-          <%= image_tag(ActionController::Base.helpers.asset_path("fallback/default_user_avatar.png"), class:"application_user_avatar") %>
-        </div>
-        
-        <% else %>
-        <div class = "before_login">
-          <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
-          <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
-        </div>
-        <% end %>
+            <span><%= current_user.name %></span>
+            <%= image_tag(ActionController::Base.helpers.asset_path("fallback/default_user_avatar.png"), class:"application_user_avatar") %>
+          </div>
 
+        <% else %>
+          <div class = "before_login">
+            <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
+            <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+          </div>
+        <% end %>
 
         <div class="hamburger-menu">
           <input type="checkbox" id="menu-btn-check">
@@ -63,10 +62,10 @@
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link" %>
               </ul>
             <% else %>
-                <ul class = "links">
-                  <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
-                  <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
-                </ul>
+              <ul class = "links">
+                <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
+                <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+              </ul>
             <% end %>
             <!--ここまでメニュー-->
           </div>
@@ -89,6 +88,7 @@
         <% end %>
       <% end %>
         <%= render "shared/error", obj: @post %>
+        <%= render "shared/error", obj: @userprofile %>
     </ul>
   </div>
     <%= yield %>

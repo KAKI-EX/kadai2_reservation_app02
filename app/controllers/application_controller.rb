@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_image_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :name])
   end
 
   def set_search
@@ -26,8 +26,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_profile
+
     if user_signed_in? && Userprofile.exists?(user_id: current_user.id)
-      @userprofile_header = Userprofile.find(current_user.id)
+      @userprofile_header = Userprofile.find_by(user_id: current_user.id) #find(curren_user.id)だとエラーになるためfind_by に変更
     end
   end
 

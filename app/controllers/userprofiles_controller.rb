@@ -6,9 +6,10 @@ class UserprofilesController < ApplicationController
 
   def create
     @userprofile = Userprofile.new(params_permit)
+    not_match_userprofileid_currentuserid
     if @userprofile.save
       flash[:notice] = "プロフィールの登録が完了しました"
-      redirect_to userprofile_path
+      redirect_to userprofile_path(current_user)
     else
       render "new"
     end
@@ -17,11 +18,13 @@ class UserprofilesController < ApplicationController
   def show
     @user = User.find(params[:id])
     @userprofile = @user.userprofile
+    not_match_userprofileid_currentuserid
   end
 
   def edit
     @user = User.find(params[:id])
     @userprofile = @user.userprofile
+    not_match_userprofileid_currentuserid
   end
 
   def update
@@ -29,7 +32,7 @@ class UserprofilesController < ApplicationController
     if @userprofile.update(params_permit)
       not_match_userprofileid_currentuserid
       flash[:notice] = "プロフィールの編集が完了しました"
-      redirect_to userprofile_path
+      redirect_to userprofile_path(current_user)
     else
       render "edit"
     end
@@ -47,10 +50,12 @@ class UserprofilesController < ApplicationController
     )
   end
 
-  def not_match_userprofileid_currentuserid    #万が一current_user.idとPost.user_idが一致しない場合の対策
-    unless @userprofile.user_id == current_user.id
+  def not_match_userprofileid_currentuserid    #万が一current_user.idとuserprofile.user_idが一致しない場合の対策
+    if  Userprofile.exists?(user_id: current_user.id) == false
+
+    elsif  @userprofile.nil? || @userprofile.user_id != current_user.id
       flash[:alert] = "error userprofile:予期しないエラーが発生しました"
-      redirect_to userprofile_path
+      redirect_to userprofile_path(current_user)
     end
   end
 

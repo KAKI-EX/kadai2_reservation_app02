@@ -3,7 +3,8 @@
   <% if @userprofile.nil?%>
     <p> あなたのプロフィールが見つかりませんでした。</p>
     <%= button_to "プロフィール登録", new_userprofile_path, method: :get, class: "userprofile_show_new"%>
-  <% elsif @userprofile.user_id != current_user %>
+
+  <% elsif user_signed_in? == false ||@userprofile.user_id != current_user.id %>
     <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
     <div class = userprofile_show_room_information>
       <table id = "userprofile_show_table">
@@ -17,7 +18,7 @@
       </table>
     </div>
 
-  <% elsif user_signed_in? %>
+  <% elsif @userprofile.user_id == current_user.id %>
     <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
     <div class = userprofile_show_room_information>
       <table id = "userprofile_show_table">
@@ -35,6 +36,7 @@
         <%= button_to "TOPへ", root_path(current_user.id), method: :get, class: "userprofile_show_back" %>
       </div>
     </div>
+
   <% else %>
     <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
       <div class = userprofile_show_room_information>

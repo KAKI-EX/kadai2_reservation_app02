@@ -19,3 +19,7 @@ ja:
         check_in: チェックイン日
         check_out: チェックアウト日
         people_count: ご宿泊人数
+      userprofile:
+        self_introduce: 自己紹介(250文字まで)
+        user_name: ニックネーム
+        user_avatar: ユーザー画像
