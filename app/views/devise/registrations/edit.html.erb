@@ -33,12 +33,8 @@
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
-        <div class="devise_user_avatar">
-          <%= f.label :avatar %> <br />
-          <%= f.file_field :avatar %>
-        </div>
 
-          <div class="devise_input_password">
+        <div class="devise_input_password">
           <%= f.label :current_password %><i>(変更を反映させる場合はパスワードを入力)</i><br />
           <%= f.password_field :current_password, autocomplete: "current-password" %>
         </div>

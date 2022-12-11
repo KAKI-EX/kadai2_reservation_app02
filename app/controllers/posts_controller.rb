@@ -37,9 +37,9 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(params_permit)
-    not_match_postid_currentuserid
-    flash[:notice] = "#{@post.room_address_prefecture} #{@post.room_address_town_village}の編集が完了しました"
-    redirect_to posts_path
+      not_match_postid_currentuserid
+      flash[:notice] = "#{@post.room_address_prefecture} #{@post.room_address_town_village}の編集が完了しました"
+      redirect_to posts_path
     else
       render "edit"
     end

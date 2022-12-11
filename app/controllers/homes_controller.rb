@@ -112,9 +112,7 @@ class HomesController < ApplicationController
     end
   end
 
-
   private
-
 
   def params_permit
     params.require(:reservation).permit(
