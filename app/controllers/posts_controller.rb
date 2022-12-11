@@ -10,12 +10,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params_permit)
-    if @post.save
-      flash[:notice] = "お部屋の登録が完了しました"
-      redirect_to posts_path
+    if Userprofile.exists?(user_id: current_user.id)
+      @post = Post.new(params_permit)
+      if @post.save
+        flash[:notice] = "お部屋の登録が完了しました"
+        redirect_to posts_path
+      else
+        render "new"
+      end
     else
-      render "new"
+      flash[:alert] = "予期しないエラーが発生しました。プロフィールが登録されていない可能性があります"
+      redirect_back(fallback_location: root_path)
     end
   end
 

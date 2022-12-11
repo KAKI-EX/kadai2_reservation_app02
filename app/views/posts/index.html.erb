@@ -1,8 +1,12 @@
 
 <div class = "post_index_container">
   <h1>部屋の貸し出し</h1>
-  <%= button_to "お部屋の貸し出し登録", new_post_path, method: :get, class: "rent_room_button" %>
-
+  <% if Userprofile.exists?(user_id: current_user.id)%>
+    <%= button_to "お部屋の貸し出し登録", new_post_path, method: :get, class: "rent_room_button" %>
+  <% else %>
+    <p>お部屋の貸出機能を利用するにはプロフィールの登録が必要です。下記から登録をお願いします。</p>
+    <%= button_to "プロフィールの登録", new_userprofile_path, method: :get, class: "rent_room_button" %>
+  <% end %>
     <div class = "post_room_information">
       <h3>投稿一覧</h3>
       <table>
