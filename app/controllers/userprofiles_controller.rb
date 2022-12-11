@@ -2,6 +2,9 @@ class UserprofilesController < ApplicationController
 
   def new
     @userprofile = Userprofile.new
+    if Userprofile.exists?(user_id: current_user.id)
+      not_match_userprofileid_currentuserid
+    end
   end
 
   def create
@@ -18,7 +21,6 @@ class UserprofilesController < ApplicationController
   def show
     @user = User.find(params[:id])
     @userprofile = @user.userprofile
-    not_match_userprofileid_currentuserid
   end
 
   def edit
@@ -51,9 +53,7 @@ class UserprofilesController < ApplicationController
   end
 
   def not_match_userprofileid_currentuserid    #万が一current_user.idとuserprofile.user_idが一致しない場合の対策
-    if  Userprofile.exists?(user_id: current_user.id) == false
-
-    elsif  @userprofile.nil? || @userprofile.user_id != current_user.id
+    unless  @userprofile.user_id == current_user.id
       flash[:alert] = "error userprofile:予期しないエラーが発生しました"
       redirect_to userprofile_path(current_user)
     end

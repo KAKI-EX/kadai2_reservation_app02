@@ -1,17 +1,19 @@
 <div class = "userprofile_show_container">
 
-  <% if @userprofile.nil?%>
+  <% if @userprofile.nil? && @user_id != current_user.id %>
+    <p>このユーザーはまだプロフィールを作成していません</p>
+
+  <% elsif @userprofile.nil? && Userprofile.exists?(user_id: current_user.id)%>
     <p> あなたのプロフィールが見つかりませんでした。</p>
     <%= button_to "プロフィール登録", new_userprofile_path, method: :get, class: "userprofile_show_new"%>
 
-  <% elsif user_signed_in? == false ||@userprofile.user_id != current_user.id %>
+  <% elsif user_signed_in? == false || @userprofile.user_id != current_user.id %>
     <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
     <div class = userprofile_show_room_information>
       <table id = "userprofile_show_table">
         <div class = "userprofile_show_room_image">
           <tr><th class = "">登録画像</th><td><%= image_tag @userprofile.user_avatar.to_s %></td></tr>
         </div>
-
         <tr><th>プロフィール登録日</th><td><%= @userprofile.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
         <tr><th>ユーザー名</th><td><%= @userprofile.user_name %></td></tr>
         <tr><th>自己紹介</th><td><%= @userprofile.self_introduce %></td></tr>
@@ -25,11 +27,9 @@
         <div class = "userprofile_show_room_image">
           <tr><th class = "">登録画像</th><td><%= image_tag @userprofile.user_avatar.to_s %></td></tr>
         </div>
-
         <tr><th>プロフィール登録日</th><td><%= @userprofile.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
         <tr><th>ユーザー名</th><td><%= @userprofile.user_name %></td></tr>
         <tr><th>自己紹介</th><td><%= @userprofile.self_introduce %></td></tr>
-
       </table>
       <div class = "userprofile_show_button">
         <%= button_to "情報修正", edit_userprofile_path, method: :get, class: "userprofile_show_modify"%>
@@ -44,11 +44,9 @@
           <div class = "userprofile_show_room_image">
             <tr><th class = "">登録画像</th><td><%= image_tag @userprofile.user_avatar.to_s %></td></tr>
           </div>
-
           <tr><th>プロフィール登録日</th><td><%= @userprofile.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
           <tr><th>ユーザー名</th><td><%= @userprofile.user_name %></td></tr>
           <tr><th>自己紹介</th><td><%= @userprofile.self_introduce %></td></tr>
-
         </table>
         <div class = "userprofile_show_button">
           <p>予約をする場合は以下から登録またはサインインをお願いします。</p>
