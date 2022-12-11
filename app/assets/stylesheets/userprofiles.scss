@@ -1,3 +1,242 @@
 // Place all the styles related to the userprofiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+// ---------------------------------------------------
+// 以下 userprofile/show.htmlの記述
+// ---------------------------------------------------
+
+.userprofile_show_container{
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 30px;
+}
+
+.userprofile_show_container h1{
+  text-align: center;
+
+}
+
+.userprofile_show_room_information{
+  width: 100%;
+}
+
+#userprofile_show_table{
+  margin: auto;
+  width: 50%;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #888888;
+  padding: 20px;
+  background-color: white;
+  table-layout: fixed;
+  font-size: 18px;
+  line-height: 70px;
+}
+
+#userprofile_show_table th{
+  width: 25%;
+}
+
+.userprofile_show_room_information th,
+.userprofile_show_room_information td{
+  border-bottom: 1px solid #eaedef;
+}
+
+.userprofile_show_room_information img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+#userprofile_show_table td{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+}
+
+.userprofile_show_button{
+  text-align: center;
+}
+
+.userprofile_show_modify,
+.userprofile_show_new{
+width:25%;
+height: 40px;
+margin-top:10px;
+border: 1px solid;
+border-radius: 0.25rem;
+border-color: #007bff;
+background-color: #4a90e2 !important;
+color: white;
+}
+
+.userprofile_show_delete,
+.userprofile_show_back{
+  width:25%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #bbbbbb;
+  background-color: grey !important;
+  color: white;
+}
+
+
+// ---------------------------------------------------
+// 以下 userprofile/new.htmlの記述
+// ---------------------------------------------------
+
+
+.userprofile_new_container{
+  padding: 50px 400px 50px 400px;
+  background-color: #F6F8F9;
+}
+
+.userprofile_new_input_field table{
+  margin:auto;
+  background-color: white;
+  width: 100%;
+  padding: 30px;
+}
+
+.userprofile_new_input_field td{
+  height: 80px;
+  border-top: 1px solid #eaedef;
+}
+
+.userprofile_new_input_field th{
+  border-top: 1px solid #eaedef;
+  text-align: left;
+}
+
+.userprofile_new_input_field input{
+  width: 100%;
+  height: 50px;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.userprofile_new_input_field #userprofile_room_info{
+  width: 100%;
+  height: 300px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.userprofile_new_input_field #userprofile_room_photo{
+  border:0px;
+
+}
+
+input.userprofile_new_submit_button,
+input.userprofile_new_back_button{
+  display: block;
+  margin:  0 auto;
+  margin-bottom:20px;
+  margin-top: 20px;
+}
+
+input.userprofile_new_submit_button{
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.required::after {
+  content: "必須";
+  background-color: #f0ad4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+// ---------------------------------------------------
+// 以下 userprofile/edit.htmlの記述
+// ---------------------------------------------------
+
+.userprofile_edit_container{
+  padding: 50px 400px 50px 400px;
+  background-color: #F6F8F9;
+}
+
+.userprofile_edit_input_field table{
+  margin:auto;
+  background-color: white;
+  width: 100%;
+  padding: 30px;
+}
+
+.userprofile_edit_input_field td{
+  height: 80px;
+  border-top: 1px solid #eaedef;
+}
+
+.userprofile_edit_input_field th{
+  border-top: 1px solid #eaedef;
+  text-align: left;
+}
+
+.userprofile_edit_input_field input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.userprofile_edit_input_field #userprofile_user_avatar{
+  border:0px;
+
+}
+
+input.userprofile_edit_submit_button,
+input.userprofile_edit_back_button{
+  display: block;
+  margin:  0 auto;
+  margin-bottom:20px;
+  margin-top: 20px;
+}
+
+input.userprofile_edit_submit_button{
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.required::after {
+  content: "必須";
+  background-color: #f0ad4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}

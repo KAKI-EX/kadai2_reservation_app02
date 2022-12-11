@@ -23,6 +23,6 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.submit "登録完了する",class: "userprofile_new_submit_button"%>
     <% end %>
-    <%= button_to "トップページに戻る",userprofiles_path,method: :get, class:"userprofile_new_back_button" %>
+    <%= button_to "トップページに戻る",root_path, method: :get, class:"userprofile_new_back_button" %>
   </div>
 </div>

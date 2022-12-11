@@ -1,4 +1,9 @@
 <div class = "userprofile_show_container">
+
+<% if @userprofile.nil?%>
+  <p> あなたのプロフィールが見つかりませんでした。</p>
+  <%= button_to "プロフィール登録", new_userprofile_path, method: :get, class: "userprofile_show_new"%>
+<% else %>
   <h1><%= "#{@userprofile.user_name}さんのプロフィールの詳細" %></h1>
   <div class = userprofile_show_room_information>
     <table id = "userprofile_show_table">
@@ -13,8 +18,8 @@
     </table>
     <div class = "userprofile_show_button">
       <%= button_to "情報修正", edit_userprofile_path, method: :get, class: "userprofile_show_modify"%>
-      <%#= button_to "登録削除", userprofile_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "userprofile_show_delete" %>
-      <%#= button_to "お部屋貸し出し画面TOPへ", userprofiles_path(current_user.id), method: :get, class: "userprofile_show_back" %>
+      <%= button_to "TOPへ", root_path(current_user.id), method: :get, class: "userprofile_show_back" %>
     </div>
   </div>
+  <% end %>
 </div>

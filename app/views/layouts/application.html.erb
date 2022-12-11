@@ -17,11 +17,6 @@
     <div class = "background_color">
       <div class = "header_contents">
         <%= link_to image_tag("logo_transparent.png", class:"logo"),root_path  %>
-
-
-        <li><%= link_to "プロフィール", userprofile_path(current_user), class:"link" %>
-
-
         <!--ransack用の記述-->
         <div class = "search_field">
           <%= search_form_for @q, url: search_result_homes_path do |f| %>
@@ -52,8 +47,9 @@
               <ul class = "links">
                 <li><%= link_to "トップ　", root_path, class:"link" %></li>
                 <li><%= link_to "お部屋の貸し出し　", posts_path, class:"link" %>
-                <li><%= link_to "アカウント設定", edit_user_registration_path, class:"link" %>
                 <li><%= link_to "予約一覧　",home_path(current_user), class:"link" %>
+                <li><%= link_to "アカウント設定", edit_user_registration_path, class:"link" %>
+                <li><%= link_to "プロフィール設定", userprofile_path(current_user),method: :get, class:"link" %>
                 <li><%= link_to "ログアウト　", destroy_user_session_path, method: :delete, class:"link" %>
               </ul>
             <% else %>
