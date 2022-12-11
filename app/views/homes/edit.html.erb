@@ -1,0 +1,54 @@
+<div class = "edit_confirmation_container">
+  <div class = "edit_information_area">
+    <div class = "edit_room_image">
+        <%= image_tag(@post.room_photo.to_s, class:"reservationmenu_img") %>
+    </div>
+    <div class = "edit_room_description">
+      <div class = "edit_user_avatar">
+        <%= link_to image_tag(@userprofile.user_avatar.to_s, class:"edit_user_avatar"), "/userprofiles/#{@userprofile.user_id}" %>
+      </div>
+      <div class = "edit_room_info">
+        <div class = "edit_room_name">
+          <h3><%= @post.room_name %></h3>
+        </div>
+        <div class = "edit_room_address">
+          <span><%= @post.room_address_prefecture + @post.room_address_town_village  %></span>
+        </div>
+      </div>
+    </div>
+    <div class = "edit_room_introduce">
+      <%= @post.room_info %>
+    </div>
+  </div>
+
+  <% if @reservation.check_in < Date.today %>
+    <div class = "edit_confirmation_information_area">
+      <p>過去の予約または当日の予約は編集できません。</p>
+      <%= form_with model:@reservation, url: {controller: 'homes', action: 'edit_confirmation'}, local: true do |f| %>
+        <table>
+          <tr><th><%= f.label :check_in,"チェックイン日" %></th><td><%= f.date_field :check_in, disabled: true %></td></tr>
+          <tr><th><%= f.label :check_out, "チェックアウト日"%></th><td><%= f.date_field :check_out,disabled: true %></td></tr>
+          <tr><th><%= f.label :people_count, "ご宿泊人数"%></th><td><%= f.number_field :people_count, in: 1..10 ,disabled: true %></td></tr>
+          <%= f.hidden_field :room_fee %>
+          <%= f.hidden_field :total_fee %>
+        </table>
+      <% end %>
+      <%= button_to "履歴の削除",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" }, class:"edit_confirmation_delete" %>
+    </div>
+
+    <% else %>
+    <div class = "edit_confirmation_information_area">
+        <%= form_with model:@reservation, url: {controller: 'homes', action: 'edit_confirmation'}, local: true do |f| %>
+          <table>
+            <tr><th><%= f.label :check_in,"チェックイン日" %></th><td><%= f.date_field :check_in %></td></tr>
+            <tr><th><%= f.label :check_out, "チェックアウト日"%></th><td><%= f.date_field :check_out %></td></tr>
+            <tr><th><%= f.label :people_count, "ご宿泊人数"%></th><td><%= f.number_field :people_count, in: 1..10 %></td></tr>
+            <%= f.hidden_field :room_fee %>
+            <%= f.hidden_field :total_fee %>
+          </table>
+          <%= f.submit '予約を変更する', class: "edit_confirmation_button" %>
+        <% end %>
+      <%= button_to "予約をキャンセルする",home_path ,method: :delete, data: { confirm: "本当に削除しますか？" }, class:"edit_confirmation_delete" %>
+    </div>
+  <% end %>
+</div>

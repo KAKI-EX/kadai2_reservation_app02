@@ -1,0 +1,35 @@
+
+<div class = "show_container">
+  <div class = "reservation_list">
+    <h2>予約済みルーム一覧</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class = "homes_show_img_th">お部屋の写真</th>
+          <th>ご予約番号</th>
+          <th>ルーム名</th>
+          <th>合計料金</th>
+          <th>チェックイン</th>
+          <th>チェックアウト</th>
+          <th>ご予約の変更/キャンセル</th>
+        </tr>
+      <thead>
+      <tbody>
+        <% @reservations_relate.each do |reserve| %>
+        <% @posts = Post.where(id: reserve.post_id) %>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= image_tag(post.room_photo.to_s, class:"homes_show_img") %>
+              <td><%= reserve.id %></td>
+              <td><%= post.room_name %></td>
+              <td><%= "￥#{reserve.total_fee}" %></td>
+              <td><%= reserve.check_in.strftime('%Y年%-m月%-d日') %></td>
+              <td><%= reserve.check_out.strftime('%Y年%-m月%-d日') %></td>
+              <td><%= link_to "予約を変更する",edit_home_path(reserve) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

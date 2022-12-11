@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        age: 年齢
+        introduction: 一言紹介
+      post:
+        room_name: お部屋の名前
+        room_price: お部屋の価格
+        room_address_postcode: 郵便番号
+        room_address_prefecture: 都道府県
+        room_address_town_village: 市区町村
+        room_photo: お部屋の写真
+      reservation:
+        check_in: チェックイン日
+        check_out: チェックアウト日
+        people_count: ご宿泊人数
+      userprofile:
+        self_introduce: 自己紹介(250文字まで)
+        user_name: ニックネーム
+        user_avatar: ユーザー画像

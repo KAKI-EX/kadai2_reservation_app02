@@ -1,0 +1,28 @@
+<div class = "userprofile_new_container">
+  <div class = "userprofile_new_input_field">
+    <h1>アカウントプロフィール登録</h1>
+    <%= form_with model:@userprofile,local: true do |f| %>
+      <table>
+
+        <tr>
+          <th class = "required"><%= f.label :user_name, "ニックネーム"%></th>
+          <td><%= f.text_field :user_name %></td>
+        </tr>
+
+        <tr>
+          <th class = "required"><%= f.label :self_introduce,"自己紹介(250文字まで)" %></th>
+          <td><%= f.text_field :self_introduce %></td>
+        </tr>
+
+        <tr>
+          <th class = "required"><%= f.label :user_avatar, "ユーザー画像"%></th>
+          <td><%= f.file_field :user_avatar %></td>
+        </tr>
+
+      </table>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "登録完了する",class: "userprofile_new_submit_button"%>
+    <% end %>
+    <%= button_to "トップページに戻る",root_path, method: :get, class:"userprofile_new_back_button" %>
+  </div>
+</div>

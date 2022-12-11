@@ -6,10 +6,97 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+
+
+<header>
+  <div class = "application_container">
+    <div class = "background_color">
+      <div class = "header_contents">
+        <%= link_to image_tag("logo_transparent.png", class:"logo"),root_path  %>
+        <!--ransack用の記述-->
+        <div class = "search_field">
+          <%= search_form_for @q, url: search_result_homes_path do |f| %>
+          <%= f.search_field :room_address_prefecture_or_room_address_town_village_cont,placeholder: "エリア検索" %>
+          <%= f.submit "検索" %>
+          <%= f.search_field :room_name_or_room_info_cont,placeholder: "フリーワード検索" %>
+          <%= f.submit "検索" %>
+          <% end %>
+          <!--ここまで-->
+        </div>
+
+        <% if user_signed_in? && Userprofile.exists?(user_id: current_user.id) %>
+          <div class = "application_user_profile">
+            <span><%= current_user.name %></span>
+            <%= image_tag(@userprofile_header.user_avatar.to_s, class:"application_user_avatar") %>
+          </div>
+
+        <% elsif user_signed_in? && @userprofile_header.nil? %>
+          <div class = "application_user_profile">
+            <span><%= current_user.name %></span>
+            <%= image_tag(ActionController::Base.helpers.asset_path("fallback/default_user_avatar.png"), class:"application_user_avatar") %>
+          </div>
+
+        <% else %>
+          <div class = "before_login">
+            <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
+            <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+          </div>
+        <% end %>
+
+        <div class="hamburger-menu">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+            <!--ここからメニュー-->
+          <div class="menu-content">
+            <% if user_signed_in? %>
+              <ul class = "links">
+                <li><%= link_to "トップ", root_path, class:"link" %></li>
+                <li><%= link_to "お部屋の貸し出し", posts_path, class:"link" %>
+                <li><%= link_to "予約一覧",home_path(current_user), class:"link" %>
+                <li><%= link_to "アカウント設定", edit_user_registration_path, class:"link" %>
+                <li><%= link_to "プロフィール設定", userprofile_path(current_user),method: :get, class:"link" %>
+                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link" %>
+              </ul>
+            <% else %>
+              <ul class = "links">
+                <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
+                <li><%= link_to "ログイン", new_user_session_path, class:"link" %></li>
+              </ul>
+            <% end %>
+            <!--ここまでメニュー-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<body>
+  <div class = "messages">
+    <ul>
+      <% if flash[:notice].present? %>
+        <li class="notice"><%= flash[:notice] %></li>
+      <% elsif flash[:alert].present? %>
+        <li class="alert"><%= flash[:alert] %></li>
+      <% elsif flash[:error].present? %>
+        <% flash[:error].each do |e| %>
+          <li class="error"><%= e %></li>
+        <% end %>
+      <% end %>
+        <%= render "shared/error", obj: @post %>
+        <%= render "shared/error", obj: @userprofile %>
+    </ul>
+  </div>
     <%= yield %>
-  </body>
+</body>
+
+  <footer>
+    <div class = "background_color_footer">
+      <p>POTEPAN.INC</p>
+    </div>
+  </footer>
 </html>

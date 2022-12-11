@@ -1,0 +1,322 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// ---------------------------------------------------
+// 以下 posts/index.htmlの記述
+// ---------------------------------------------------
+
+
+.post_index_container{
+  padding: 40px;
+}
+
+.post_index_container h1{
+  padding-bottom: 20px;
+}
+
+input.rent_room_button{
+  width:15%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+
+.post_room_information{
+  padding: 30px 30px 30px 10px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.post_room_information img{
+  border-radius: 10px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.post_room_information th{
+  line-height: 70px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.post_room_information td{
+  padding: 5px;
+  text-align: center;
+  word-break: break-all;
+}
+
+.post_room_information a{
+  color:inherit;
+  text-decoration: none;
+}
+
+td.post_room_info{
+  width: 10%;
+}
+
+.post_room_information td{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+// ---------------------------------------------------
+// 以下 posts/new.htmlの記述
+// ---------------------------------------------------
+
+.post_new_container{
+  padding: 50px 400px 50px 400px;
+  background-color: #F6F8F9;
+}
+
+.post_new_input_field table{
+  margin:auto;
+  background-color: white;
+  width: 100%;
+  padding: 30px;
+}
+
+.post_new_input_field td{
+  height: 80px;
+  border-top: 1px solid #eaedef;
+}
+
+.post_new_input_field th{
+  border-top: 1px solid #eaedef;
+  text-align: left;
+}
+
+.post_new_input_field input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.post_new_input_field #post_room_info{
+  width: 100%;
+  height: 300px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.post_new_input_field #post_room_photo{
+  border:0px;
+
+}
+
+input.post_new_submit_button,
+input.post_new_back_button{
+  display: block;
+  margin:  0 auto;
+  margin-bottom:20px;
+  margin-top: 20px;
+}
+
+input.post_new_submit_button{
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.required::after {
+  content: "必須";
+  background-color: #f0ad4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+
+// ---------------------------------------------------
+// 以下 posts/show.htmlの記述
+// ---------------------------------------------------
+
+
+
+
+.post_show_container{
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 30px;
+}
+
+.post_show_container h1{
+  text-align: center;
+
+}
+
+.post_show_room_information{
+  width: 100%;
+}
+
+#post_show_table{
+  margin: auto;
+  width: 50%;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #888888;
+  padding: 20px;
+  background-color: white;
+  table-layout: fixed;
+  font-size: 18px;
+  line-height: 70px;
+}
+
+#post_show_table th{
+  width: 25%;
+}
+
+.post_show_room_information th,
+.post_show_room_information td{
+  border-bottom: 1px solid #eaedef;
+}
+
+.post_show_room_information img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+#post_show_table td{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+}
+
+.post_show_button{
+  text-align: center;
+}
+
+.post_show_modify{
+width:25%;
+height: 40px;
+margin-top:10px;
+border: 1px solid;
+border-radius: 0.25rem;
+border-color: #007bff;
+background-color: #4a90e2 !important;
+color: white;
+}
+
+.post_show_delete,
+.post_show_back{
+  width:25%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #bbbbbb;
+  background-color: grey !important;
+  color: white;
+}
+
+
+// ---------------------------------------------------
+// 以下 posts/edit.htmlの記述
+// ---------------------------------------------------
+
+
+.post_edit_container{
+  padding: 50px 400px 50px 400px;
+  background-color: #F6F8F9;
+}
+
+.post_edit_input_field table{
+  margin:auto;
+  background-color: white;
+  width: 100%;
+  padding: 30px;
+}
+
+.post_edit_input_field td{
+  height: 80px;
+  border-top: 1px solid #eaedef;
+}
+
+.post_edit_input_field th{
+  border-top: 1px solid #eaedef;
+  text-align: left;
+}
+
+.post_edit_input_field input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.post_edit_input_field #post_room_info{
+  width: 100%;
+  height: 300px;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  font-size: 20px;
+}
+
+.post_edit_input_field #post_room_photo{
+  border:0px;
+
+}
+
+input.post_edit_submit_button,
+input.post_edit_back_button{
+  display: block;
+  margin:  0 auto;
+  margin-bottom:20px;
+  margin-top: 20px;
+}
+
+input.post_edit_submit_button{
+  border: 1px solid;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.required::after {
+  content: "必須";
+  background-color: #f0ad4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  display: inline-block;
+}

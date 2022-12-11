@@ -1,0 +1,646 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+// ---------------------------------------------------
+// 以下 homes/index.html.search.erbの記述
+// ---------------------------------------------------
+
+.container{
+  width: 100%;
+}
+
+.top{
+  margin-top: 50px;
+  background-image: url(/assets/img_cover_top.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+}
+
+.index_search{
+  padding: 25px;
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  width: fit-content;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.index_search h3{
+  font-size: 30px;
+}
+
+.index_search p{
+  font-size: 20px;
+}
+
+input#q_room_address_prefecture_or_room_address_town_village_cont.search_box{
+  width: 100%;
+  height: 35px;
+  border-radius: 0.25rem;
+}
+
+.search_button{
+  width: 100%;
+  height: 35px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.recomend_area{
+  padding: 50px;
+}
+
+.recomend_area p{
+  font-size: 30px;
+}
+
+.link_image{
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  column-gap: 60px;
+}
+
+.tokyo,.oosaka,.kyoto,.sapporo{
+  position: relative;
+  width: 25%;
+}
+
+.tokyo-img,.osaka-img,.kyoto-img,.sapporo-img{
+  border-radius: 10px;
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+
+}
+
+.link_image span{
+  width: 100%;
+  display: block;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  z-index: 1;
+  text-align: center;
+  bottom: 15px;
+  margin: 0 auto;
+  font-size: 30px;
+}
+
+// ---------------------------------------------------
+// 以下 homes/search_result.html.search.erbの記述
+// ---------------------------------------------------
+
+.result_counter{
+  font-size: 25px;
+  margin: 20px;
+}
+
+.infomations{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.room_discription p{
+  text-align: right;
+  font-size: 20px;
+}
+.information_block{
+  width: 20%;
+  margin: 25px;
+  border: 1px solid #e2e2e2;
+}
+
+.room_discription{
+  margin: 10px;
+}
+
+.information_block a{
+  text-decoration: none;
+  color:black;
+}
+
+a:visited,
+a:hover,
+a:active{
+  text-decoration: none;
+  color: inherit;
+}
+
+.room_image img{
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+}
+
+// ---------------------------------------------------
+// 以下 homes/new.html.erbの記述
+// ---------------------------------------------------
+
+
+
+.new_information_area{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+.new_room_information_block{
+  width: 40%;
+  padding: 20px;
+  margin: 25px;
+}
+
+.new_room_description{
+  display: flex;
+}
+
+.new_room_info{
+  padding-left: 20px;
+}
+
+.new_room_image img{
+  border-radius: 10px;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.new_user_avatar img{
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  min-width: 75px;
+  min-height: 75px;
+  opacity: 1;
+  object-fit: cover;
+  margin-left: 10px;
+}
+
+.new_room_name{
+  margin-bottom: 10px;
+}
+
+.new_room_introduce{
+  font-size: 18px;
+  line-height: 30px;
+  padding: 30px 10px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+  word-break: break-all;
+}
+
+.new_reservation_area{
+  width: 35%;
+  margin: 40px;
+}
+
+.new_reservation_block{
+  width: 40%;
+  padding: 20px;
+  margin: 25px;
+  border: 1px solid #e2e2e2;
+}
+
+.new_reservation_price{
+  font-size: 22px;
+}
+
+.new_reservation_check_in{
+  margin:20px 0px;
+}
+
+.new_reservation_check_out{
+  margin:20px 0px;
+}
+
+.new_people_count{
+  margin:20px 0px;
+}
+
+.new_reservation_check_in #reservation_check_in,
+.new_reservation_check_out #reservation_check_out,
+.new_people_count #reservation_people_count
+{
+  width: 70%;
+  height: 40px;
+  font-size: 18px;
+}
+
+.new_reservation_button input{
+  width: 70%;
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.new_reservation_before_login li{
+  list-style: none;
+  color: blue;
+  margin: 20px;
+}
+
+.new_reservation_before_login a{
+}
+
+// ---------------------------------------------------
+// 以下 homes/confirmation.html.erbの記述
+// ---------------------------------------------------
+
+
+.reserve_confirmation{
+  width: fit-content;
+  margin-left: 30%;
+  padding: 20px;
+
+}
+
+.modified_information_area{
+  margin:50px;
+  border: 1px solid #e2e2e2;
+  width: fit-content;
+  padding: 20px;
+}
+
+.confirmation_detail{
+  border-bottom: 1px solid #eaedef;
+  font-size: 30px;
+  padding: 15px;
+}
+.confirmation_room_fee{
+  font-size: 22px;
+  margin: 18px;
+}
+
+.confirmation_check_in,
+.confirmation_check_out,
+.confirmation_total_fee{
+  margin: 18px;
+}
+
+#reservation_check_in,
+#reservation_check_out,
+#reservation_total_fee{
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+}
+
+.confirmation_people_count,
+.confirmation_stay_count{
+  margin-left:18px;
+}
+
+.confirmation_people_count{
+  border-bottom: 1px solid #eaedef;
+  line-height: 50px;
+}
+
+.confirmation_button{
+  width:100%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.confirmation_button2 button{
+  width:100%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  background-color: #495057 !important;
+  color: white;
+}
+
+.confirmation_hidden_field{
+  margin: 18px;
+}
+
+.confirmation_button2 a{
+  text-decoration: none;
+}
+
+
+// ---------------------------------------------------
+// 以下 homes/confirmed.html.erbの記述
+// ---------------------------------------------------
+
+.confirmed_container{
+  background-color: #e6f0f9;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 15%;
+  text-align: center;
+}
+
+.confirmed_information_area{
+  width: 60%;
+  font-size: 20px;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.confirmed_information_area table{
+  width: 100%;
+}
+.confirmed_information_area thead{
+  width: 100%;
+  display: inline-block;
+  border: solid 1px #82bcef;
+}
+
+.confirmed_information_area th,
+.confirmed_information_area td{
+  text-align: left;
+  width: 40%;
+  line-height: 50px;
+
+}
+
+.confirmed_information_area th{
+  padding-right: 100px;
+  padding-left:20px
+}
+
+.confirmed_information_area td{
+  width: 100%;
+}
+
+.confirmed_container h3{
+  text-align: center;
+}
+
+.confirmed_container a{
+}
+
+// ---------------------------------------------------
+// 以下 homes/show.html.erbの記述
+// ---------------------------------------------------
+
+
+.show_container{
+  padding: 30px 50px 30px 50px;
+}
+
+.reservation_list h2{
+  margin-bottom: 35px;
+  text-align: left;
+}
+
+.reservation_list{
+  text-align: center;
+}
+
+.homes_show_img_th{
+  width: 20%;
+}
+
+.homes_show_img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.homes_show_img img{
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.reservation_list th{
+  line-height: 70px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+}
+
+.reservation_list td{
+  padding: 10px;
+}
+
+.reservation_list a{
+  color:inherit;
+  text-decoration: none;
+}
+
+// ---------------------------------------------------
+// 以下 homes/edit.html.erbの記述
+// ---------------------------------------------------
+
+
+.edit_confirmation_container{
+  display: flex;
+}
+
+.edit_information_area{
+  display: flex;
+  display: inline-block;
+  flex-wrap: wrap;
+  margin-left: 10%;
+  margin-right: 5%;
+  margin-top: 5%;
+  width: 40%;
+}
+
+.edit_room_description{
+  display: flex;
+}
+
+.edit_room_image{
+  width: 100%;
+}
+
+.edit_room_image img{
+  border-radius: 10px;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.edit_user_avatar img{
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  min-width: 75px;
+  min-height: 75px;
+  opacity: 1;
+  object-fit: cover;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.edit_room_info{
+  margin: 30px;
+}
+
+.edit_room_name{
+  margin-bottom: 10px;
+}
+
+.edit_room_introduce{
+  font-size: 18px;
+  line-height: 30px;
+  padding: 30px 10px;
+  border-top: 1px solid #eaedef;
+  border-bottom: 1px solid #eaedef;
+  word-break: break-all;
+}
+
+
+.edit_confirmation_information_area{
+  margin-top: 5%;
+  width: 40%;
+}
+
+.edit_confirmation_information_area table{
+  width: 100%;
+}
+
+.edit_confirmation_information_area tr{
+  display:block;
+  margin: 30px;
+}
+
+.edit_confirmation_information_area th,
+.edit_confirmation_information_area td{
+  width:100%;
+  display:block;
+}
+
+.edit_confirmation_information_area th{
+  text-align: left;
+}
+
+.edit_confirmation_information_area #reservation_people_count{
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+}
+
+.edit_confirmation_delete,
+input.edit_confirmation_button{
+  margin: 30px;
+  width: 91%;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  border-color: #385370;
+}
+
+input.edit_confirmation_button{
+  height: 40px;
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.edit_confirmation_information_area p{
+  padding: 30px;
+  font-size: 20px;
+}
+
+// ---------------------------------------------------
+// 以下 homes/edit_confirmation.html.erbの記述
+// ---------------------------------------------------
+
+.modified_confirmation{
+  width: fit-content;
+  margin-left: 30%;
+  padding: 20px;
+
+}
+
+.modified_information_area{
+  margin:50px;
+  border: 1px solid #e2e2e2;
+  width: fit-content;
+  padding: 20px;
+}
+
+.modified_detail{
+  border-bottom: 1px solid #eaedef;
+  font-size: 30px;
+  padding: 15px;
+}
+.modified_room_fee{
+  font-size: 22px;
+  margin: 18px;
+}
+
+.modified_check_in,
+.modified_check_out,
+.modified_total_fee{
+  margin: 18px;
+}
+
+#reservation_check_in,
+#reservation_check_out,
+#reservation_total_fee{
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+}
+
+.modified_people_count,
+.modified_stay_count{
+  margin-left:18px;
+}
+
+.modified_people_count{
+  border-bottom: 1px solid #eaedef;
+  line-height: 50px;
+}
+
+.modified_button{
+  width:100%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #007bff;
+  background-color: #4a90e2 !important;
+  color: white;
+}
+
+.modified_button2 button{
+  width:100%;
+  height: 40px;
+  margin-top:10px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border-color: #495057;
+  background-color: #495057 !important;
+  color: white;
+}
+
+.modified_hidden_field{
+  margin: 18px;
+}
+
+.modified_button2 a{
+  text-decoration: none;
+}

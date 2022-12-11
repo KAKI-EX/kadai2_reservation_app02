@@ -1,0 +1,47 @@
+<div class = "reserve_confirmation">
+  <div class = "modified_information_area">
+      <%= form_with model:@reservation,url: update_homes_path, local: true  do |f| %>
+      <div class = "modified_detail">
+        <p>変更内容確認</p>
+      </div>
+      <div class = "modified_room_fee">
+        <%= "￥#{@reservation.room_fee} / 日" %>
+      </div>
+      <div class = "modified_check_in">
+        <p><%= f.label :check_in,"チェックイン日"%></p>
+        <%= f.text_field :check_in, disabled:true %>
+      </div>
+      <div class = "modified_check_out">
+        <p><%= f.label :check_out,"チェックアウト日" %></p>
+        <%= f.text_field :check_out, disabled:true %>
+      </div>
+      <div class = "modified_stay_count">
+        <p><%= "ご宿泊日数 : #{@stay_count}泊#{@stay_count +1}日" %></p>
+      </div>
+      <div class = "modified_people_count">
+        <p><%= "ご宿泊人数 : #{@reservation.people_count} 名"%></p>
+      </div>
+      <div class = "modified_total_fee">
+        <p><%= f.label :total_fee,"合計金額" %></p>
+        <%= f.text_field :total_fee,value: @total_fee,disabled:true %>
+        <p>上記内容でよろしければ「予約変更を確定」を押してください。</p>
+      </div>
+      <div class = "modified_hidden_field">
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :post_id %>
+        <%= f.hidden_field :check_in %>
+        <%= f.hidden_field :check_out %>
+        <%= f.hidden_field :stay_count, value: @stay_count %>
+        <%= f.hidden_field :people_count %>
+        <%= f.hidden_field :room_fee %>
+        <%= f.hidden_field :total_fee, value: @total_fee %>
+          <div class= "modified_button1">
+            <%= f.submit '予約変更を確定', class: "modified_button" %>
+          </div>
+          <% end %>
+          <div class = "modified_button2">
+            <button><%= link_to "編集画面へ戻る",edit_home_path(@reservation.id) %></button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class = "container">
+  <div class = "top">
+    <div class = "index_search">
+      <h3>あなたの行きたいところはどこですか<h3>
+      <p>エリア</p>
+      <%= search_form_for @q, url: search_result_homes_path do |f| %>
+        <%= f.search_field :room_address_prefecture_or_room_address_town_village_cont,placeholder: "東京", class: "search_box" %>
+        <br><%= f.submit "検索", class: "search_button" %>
+      <% end %>
+    </div>
+  </div>
+  <div class = "recomend_area">
+    <p>おすすめのエリア</p>
+    <div class = "link_image">
+      <div class = "tokyo">
+        <span>東京</span>
+        <%= link_to image_tag("img_tokyo.jpeg", class:"tokyo-img"), search_result_homes_path(q:{room_address_prefecture_cont: "東京都"}) %>
+      </div>
+      <div class = "oosaka">
+        <span>大阪</span>
+        <%= link_to image_tag("img_osaka.jpeg", class:"osaka-img"), search_result_homes_path(q:{room_address_prefecture_cont: "大阪府"}) %>
+      </div>
+      <div class = "kyoto">
+        <span>京都</span>
+        <%= link_to image_tag("img_kyoto.jpeg", class:"kyoto-img"), search_result_homes_path(q:{room_address_prefecture_cont: "京都府"}) %>
+      </div>
+      <div class = "sapporo">
+        <span>札幌</span>
+        <%= link_to image_tag("img_sapporo.jpeg", class:"sapporo-img"), search_result_homes_path(q:{room_address_prefecture_cont: "北海道"}) %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class = "post_show_container">
+  <h1>お部屋の詳細</h1>
+  <div class = post_show_room_information>
+    <table id = "post_show_table">
+      <div class = "post_show_room_image">
+        <tr><th class = "">登録画像</th><td><%= image_tag @post.room_photo.url %></td></tr>
+      </div>
+      <tr><th>管理番号</th><td><%= @post.id %></td></tr>
+      <tr><th>更新日時</th><td><%= @post.updated_at.strftime('%Y年%-m月%-d日') %></td></tr>
+      <tr><th>投稿日時</th><td><%= @post.created_at.strftime('%Y年%-m月%-d日') %></td></tr>
+      <tr><th>部屋の名前</th><td><%= @post.room_name %></td></tr>
+      <tr><th>貸し出し価格</th><td><%= @post.room_price %></td></tr>
+      <tr><th>住所 郵便番号</th><td><%= @post.room_address_postcode %></td></tr>
+      <tr><th>住所 都道府県</th><td><%= @post.room_address_prefecture %></td></tr>
+      <tr><th>住所 市区町村</th><td><%= @post.room_address_town_village %></td></tr>
+      <tr><th>住所 その他</th><td><%= @post.room_address_other %></td></tr>
+      <tr><th>お部屋の詳細文</th><td><%= @post.room_info %></td></tr>
+    </table>
+    <div class = "post_show_button">
+      <%= button_to "情報修正", edit_post_path, method: :get, class: "post_show_modify"%>
+      <%= button_to "登録削除", post_path, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "post_show_delete" %>
+      <%= button_to "お部屋貸し出し画面TOPへ", posts_path(current_user.id), method: :get, class: "post_show_back" %>
+    </div>
+  </div>
+</div>
