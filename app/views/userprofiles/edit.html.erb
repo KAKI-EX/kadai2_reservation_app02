@@ -22,8 +22,6 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.submit "登録完了する",class: "userprofile_edit_submit_button"%>
     <% end %>
-
     <%= button_to "自分のプロフィールに戻る", userprofile_path,method: :get, class:"userprofile_edit_back_button" %>
-
   </div>
 </div>

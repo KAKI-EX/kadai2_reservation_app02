@@ -47,16 +47,16 @@
             </table>
             <div class = "new_reservation_button">
               <ul>
-              <%= f.submit "予約を確認する"%>
-              <p><%= link_to "トップページに戻る", homes_path %></p>
+                <%= f.submit "予約を確認する"%>
+                <p><%= link_to "トップページに戻る", homes_path %></p>
               </ul>
             </div>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :post_id, value: @post.id %>
             <%= f.hidden_field :room_fee, value: @post.room_price %>
-            <% end %>
-            <% else %>  <%# ログインしていない場合の表示%>
-            <div class = "new_reservation_before_login">
+        <% end %>
+        <% else %>  <%# ログインしていない場合の表示%>
+          <div class = "new_reservation_before_login">
             <li><%= link_to "予約する場合はログインしてください。", new_user_session_path %></li>
             <li><%= link_to "アカウントをお持ちでない方は会員登録が必要です。", new_user_registration_path %></li>
           </div>

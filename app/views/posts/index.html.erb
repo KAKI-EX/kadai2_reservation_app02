@@ -26,21 +26,21 @@
           </tr>
         </thead>
         <tbody>
-      <% @posts_current_user.each do |post| %>
-          <tr>
-            <td><%= image_tag post.room_photo.to_s %></td>
-            <td><%= post.id %></td>
-            <td id = "post_room_name_td"><%= post.room_name %></td>
-            <td id = "post_room_info_td"><%= post.room_info %></td>
-            <td><%= post.room_price %></td>
-            <td><%= post.room_address_prefecture %></td>
-            <td><%= post.created_at.strftime('%Y年%-m月%-d日') %></td>
-            <td><%= post.updated_at.strftime('%Y年%-m月%-d日') %></td>
-            <td><%= link_to "詳細", post_path(post) %></td>
-            <td><%= link_to "編集", edit_post_path(post)%></td>
-            <td><%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
-          </tr>
-      <% end %>
+          <% @posts_current_user.each do |post| %>
+            <tr>
+              <td><%= image_tag post.room_photo.to_s %></td>
+              <td><%= post.id %></td>
+              <td id = "post_room_name_td"><%= post.room_name %></td>
+              <td id = "post_room_info_td"><%= post.room_info %></td>
+              <td><%= post.room_price %></td>
+              <td><%= post.room_address_prefecture %></td>
+              <td><%= post.created_at.strftime('%Y年%-m月%-d日') %></td>
+              <td><%= post.updated_at.strftime('%Y年%-m月%-d日') %></td>
+              <td><%= link_to "詳細", post_path(post) %></td>
+              <td><%= link_to "編集", edit_post_path(post)%></td>
+              <td><%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
