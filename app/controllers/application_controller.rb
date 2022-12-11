@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :configure_permitted_image_parameters, if: :devise_controller?
   before_action :set_search
+  before_action :set_profile
 
   protected
 
@@ -22,6 +23,12 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = Post.ransack(params[:q])
     @posts_search = @q.result
+  end
+
+  def set_profile
+    if user_signed_in? && Userprofile.exists?(user_id: current_user.id)
+      @userprofile = Userprofile.find(current_user.id)
+    end
   end
 
 end

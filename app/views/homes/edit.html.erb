@@ -5,7 +5,7 @@
       </div>
       <div class = "edit_room_description">
         <div class = "edit_user_avatar">
-          <%= image_tag(@user.avatar.to_s) %>
+          <%= link_to image_tag(@userprofile.user_avatar.to_s, class:"edit_user_avatar"), "/userprofiles/#{@userprofile.user_id}" %>
         </div>
         <div class = "edit_room_info">
           <div class = "edit_room_name">

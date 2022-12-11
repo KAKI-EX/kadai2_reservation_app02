@@ -25,6 +25,7 @@ class HomesController < ApplicationController
     @post = Post.find(params[:id])
     @reservation = Reservation.new
     @user = User.find(@post.user_id)
+    @userprofile = @user.userprofile
   end
 
   def confirmation #割り当て:予約確認画面
@@ -70,6 +71,7 @@ class HomesController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @post = Post.find(@reservation.post_id)
     @user = User.find(@post.user_id)
+    @userprofile = @user.userprofile
     not_match_reservationuserid_currentuserid
   end
 

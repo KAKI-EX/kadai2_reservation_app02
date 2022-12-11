@@ -3,12 +3,12 @@
   <div class = "new_information_area">
     <div class = "new_room_information_block">
       <div class = "new_room_image">
-          <%= image_tag(@post.room_photo.to_s, class:"reservationmenu_img") %>
+        <%= image_tag(@post.room_photo.to_s, class:"reservationmenu_img") %>
       </div>
 
       <div class = "new_room_description">
         <div class = "new_user_avatar">
-          <%= image_tag(@user.avatar.to_s) %>
+          <%= link_to image_tag(@userprofile.user_avatar.to_s, class:"new_user_avatar"), "/userprofiles/#{@userprofile.user_id}" %>
         </div>
         <div class = "new_room_info">
           <div class = "new_room_name">

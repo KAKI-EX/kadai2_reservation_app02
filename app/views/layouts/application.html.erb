@@ -27,11 +27,17 @@
           <% end %>
           <!--ここまで-->
         </div>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && Userprofile.exists?(user_id: current_user.id) %>
         <div class = "application_user_profile">
           <span><%= current_user.name %></span>
-          <%= image_tag(current_user.avatar.to_s, class:"application_user_avatar") %>
+          <%= image_tag(@userprofile.user_avatar.to_s, class:"application_user_avatar") %>
         </div>
+        <% elsif user_signed_in? && @userprofile.nil? %>
+          <div class = "application_user_profile">
+          <span><%= current_user.name %></span>
+          <%= image_tag(ActionController::Base.helpers.asset_path("fallback/default_user_avatar.png"), class:"application_user_avatar") %>
+        </div>
+
         <% else %>
         <div class = "before_login">
           <li><%= link_to "新規会員登録", new_user_registration_path, class:"link" %></li>
